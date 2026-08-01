@@ -1,3 +1,4 @@
+// Vite Configuration for Portfolio Deployment
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 
