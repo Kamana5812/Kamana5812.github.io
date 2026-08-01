@@ -1,3 +1,5 @@
+import profileImg from '../assets/profile.jpg';
+
 export const personalInfo = {
   name: "Kamana Agrawal",
   brandLogo: "Kamana.",
@@ -33,14 +35,14 @@ export const personalInfo = {
   phone: "+91 8093859132",
   github: "https://github.com/Kamana5812",
   linkedin: "https://www.linkedin.com/in/kamana-agrawal-510146281",
-  resumeUrl: "/Kamana_Agrawal_Resume.html",
-  profileImage: "/profile.jpg",
+  resumeUrl: "./Kamana_Agrawal_Resume.html",
+  profileImage: profileImg,
   
   socials: [
     { label: "GitHub", url: "https://github.com/Kamana5812", icon: "Github" },
     { label: "LinkedIn", url: "https://www.linkedin.com/in/kamana-agrawal-510146281", icon: "Linkedin" },
     { label: "Email", url: "mailto:kamanaagrawal833@gmail.com", icon: "Mail" },
-    { label: "Resume", url: "/Kamana_Agrawal_Resume.html", icon: "FileText" }
+    { label: "Resume", url: "./Kamana_Agrawal_Resume.html", icon: "FileText" }
   ],
 
   // Stat / Capability Cards for About Section
