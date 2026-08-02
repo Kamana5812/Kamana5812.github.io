@@ -71,10 +71,6 @@ export function Contact() {
         body: JSON.stringify({ name: formData.name, email: formData.email, message: formData.message })
       }).catch(() => {});
 
-      // 3. Automatically open WhatsApp message to +91 8093859132
-      const waText = encodeURIComponent(`Hi Kamana! I sent an inquiry via your portfolio site:\n\n👤 Name: ${formData.name}\n📧 Email: ${formData.email}\n💬 Message: ${formData.message}`);
-      window.open(`https://wa.me/918093859132?text=${waText}`, '_blank');
-
       const response = await emailPromise;
 
       if (response.ok) {
