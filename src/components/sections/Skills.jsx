@@ -16,6 +16,11 @@ const ICON_MAP = {
 export function Skills() {
   const [ref, isInView] = useInView({ threshold: 0.1, triggerOnce: true });
 
+  const categories = React.useMemo(() => {
+    const saved = localStorage.getItem('custom_skills');
+    return saved ? JSON.parse(saved) : skillCategories;
+  }, []);
+
   return (
     <section
       id="skills"
@@ -34,7 +39,7 @@ export function Skills() {
 
       {/* 6 Capability Columns Grid */}
       <div className="skills-capability-grid">
-        {skillCategories.map((cat) => {
+        {categories.map((cat) => {
           const IconComponent = ICON_MAP[cat.icon] || Layout;
           return (
             <div key={cat.category} className="capability-column">

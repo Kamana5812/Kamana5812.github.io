@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
-import { Lock, Save, CheckCircle2, ShieldCheck, RefreshCw, X, Edit3, Plus, Trash2 } from 'lucide-react';
+import { Lock, Save, CheckCircle2, ShieldCheck, RefreshCw, X, Edit3, Plus, Trash2, Award, Wrench } from 'lucide-react';
 import { personalInfo } from '../data/personal';
 import { featuredProjects } from '../data/projects';
+import { skillCategories } from '../data/skills';
+import { certificationsList } from '../data/certifications';
 import './AdminDashboard.css';
 
 export function AdminDashboard({ onClose }) {
@@ -22,6 +24,16 @@ export function AdminDashboard({ onClose }) {
   const [projects, setProjects] = useState(() => {
     const saved = localStorage.getItem('custom_projects');
     return saved ? JSON.parse(saved) : [...featuredProjects];
+  });
+
+  const [skills, setSkills] = useState(() => {
+    const saved = localStorage.getItem('custom_skills');
+    return saved ? JSON.parse(saved) : [...skillCategories];
+  });
+
+  const [certs, setCerts] = useState(() => {
+    const saved = localStorage.getItem('custom_certifications');
+    return saved ? JSON.parse(saved) : [...certificationsList];
   });
 
   const [saveStatus, setSaveStatus] = useState('idle');
@@ -48,14 +60,57 @@ export function AdminDashboard({ onClose }) {
     setProjects(updated);
   };
 
+  const handleSkillChange = (index, field, value) => {
+    const updated = [...skills];
+    if (field === 'skills') {
+      updated[index].skills = value.split(',').map((s) => s.trim());
+    } else {
+      updated[index][field] = value;
+    }
+    setSkills(updated);
+  };
+
+  const handleCertChange = (index, field, value) => {
+    const updated = [...certs];
+    if (field === 'skillsCovered') {
+      updated[index].skillsCovered = value.split(',').map((s) => s.trim());
+    } else {
+      updated[index][field] = value;
+    }
+    setCerts(updated);
+  };
+
+  const handleAddCert = () => {
+    const newCert = {
+      id: `cert-${Date.now()}`,
+      name: 'New Certification Title',
+      organization: 'Issuer / Organization',
+      year: new Date().getFullYear(),
+      verificationUrl: '',
+      skillsCovered: ['Skill 1', 'Skill 2']
+    };
+    setCerts([...certs, newCert]);
+  };
+
+  const handleDeleteCert = (index) => {
+    if (window.confirm('Delete this certification card?')) {
+      setCerts(certs.filter((_, i) => i !== index));
+    }
+  };
+
   const handleSaveAll = () => {
     setSaveStatus('saving');
     localStorage.setItem('custom_personal_info', JSON.stringify(personal));
     localStorage.setItem('custom_projects', JSON.stringify(projects));
+    localStorage.setItem('custom_skills', JSON.stringify(skills));
+    localStorage.setItem('custom_certifications', JSON.stringify(certs));
 
     setTimeout(() => {
       setSaveStatus('success');
-      setTimeout(() => setSaveStatus('idle'), 2500);
+      setTimeout(() => {
+        setSaveStatus('idle');
+        window.location.reload();
+      }, 1000);
     }, 600);
   };
 
@@ -63,10 +118,17 @@ export function AdminDashboard({ onClose }) {
     if (window.confirm('Reset all content back to original defaults?')) {
       localStorage.removeItem('custom_personal_info');
       localStorage.removeItem('custom_projects');
+      localStorage.removeItem('custom_skills');
+      localStorage.removeItem('custom_certifications');
       setPersonal({ ...personalInfo });
       setProjects([...featuredProjects]);
+      setSkills([...skillCategories]);
+      setCerts([...certificationsList]);
       setSaveStatus('reset');
-      setTimeout(() => setSaveStatus('idle'), 2000);
+      setTimeout(() => {
+        setSaveStatus('idle');
+        window.location.reload();
+      }, 1000);
     }
   };
 
@@ -165,6 +227,22 @@ export function AdminDashboard({ onClose }) {
           >
             <Edit3 size={16} />
             <span>Featured Projects</span>
+          </button>
+
+          <button
+            className={`admin-tab-btn ${activeTab === 'skills' ? 'active' : ''}`}
+            onClick={() => setActiveTab('skills')}
+          >
+            <Wrench size={16} />
+            <span>Skills & Tools</span>
+          </button>
+
+          <button
+            className={`admin-tab-btn ${activeTab === 'certifications' ? 'active' : ''}`}
+            onClick={() => setActiveTab('certifications')}
+          >
+            <Award size={16} />
+            <span>Certifications</span>
           </button>
         </aside>
 
@@ -323,6 +401,125 @@ export function AdminDashboard({ onClose }) {
                         value={proj.liveDemo || ''}
                         onChange={(e) => handleProjectChange(idx, 'liveDemo', e.target.value)}
                         className="form-input"
+                      />
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
+
+          {activeTab === 'skills' && (
+            <div className="admin-section-box">
+              <h3 className="font-heading admin-section-title">Edit Skills & Tools</h3>
+
+              {skills.map((cat, idx) => (
+                <div key={cat.category || idx} className="admin-project-card">
+                  <h4 className="font-heading project-card-title">
+                    Category: {cat.category}
+                  </h4>
+
+                  <div className="admin-form-grid">
+                    <div className="form-group">
+                      <label className="form-label font-mono">CATEGORY NAME</label>
+                      <input
+                        type="text"
+                        value={cat.category || ''}
+                        onChange={(e) => handleSkillChange(idx, 'category', e.target.value)}
+                        className="form-input"
+                      />
+                    </div>
+
+                    <div className="form-group full-width">
+                      <label className="form-label font-mono">SKILLS LIST (COMMA SEPARATED)</label>
+                      <input
+                        type="text"
+                        value={Array.isArray(cat.skills) ? cat.skills.join(', ') : ''}
+                        onChange={(e) => handleSkillChange(idx, 'skills', e.target.value)}
+                        className="form-input"
+                        placeholder="React.js, JavaScript, HTML5, CSS3"
+                      />
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
+
+          {activeTab === 'certifications' && (
+            <div className="admin-section-box">
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' }}>
+                <h3 className="font-heading admin-section-title" style={{ marginBottom: 0 }}>Edit Certifications</h3>
+                <button className="btn-admin-primary font-mono" onClick={handleAddCert}>
+                  <Plus size={14} /> <span>Add Certificate</span>
+                </button>
+              </div>
+
+              {certs.map((cert, idx) => (
+                <div key={cert.id || idx} className="admin-project-card">
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' }}>
+                    <h4 className="font-heading project-card-title" style={{ margin: 0 }}>
+                      Certificate #{idx + 1}: {cert.name}
+                    </h4>
+                    <button
+                      className="btn-admin-secondary"
+                      onClick={() => handleDeleteCert(idx)}
+                      style={{ color: '#ff6b6b', borderColor: '#ff6b6b' }}
+                    >
+                      <Trash2 size={14} /> <span>Delete</span>
+                    </button>
+                  </div>
+
+                  <div className="admin-form-grid">
+                    <div className="form-group full-width">
+                      <label className="form-label font-mono">CERTIFICATION NAME</label>
+                      <input
+                        type="text"
+                        value={cert.name || ''}
+                        onChange={(e) => handleCertChange(idx, 'name', e.target.value)}
+                        className="form-input"
+                      />
+                    </div>
+
+                    <div className="form-group">
+                      <label className="form-label font-mono">ISSUER / ORGANIZATION</label>
+                      <input
+                        type="text"
+                        value={cert.organization || ''}
+                        onChange={(e) => handleCertChange(idx, 'organization', e.target.value)}
+                        className="form-input"
+                      />
+                    </div>
+
+                    <div className="form-group">
+                      <label className="form-label font-mono">YEAR</label>
+                      <input
+                        type="number"
+                        value={cert.year || ''}
+                        onChange={(e) => handleCertChange(idx, 'year', e.target.value)}
+                        className="form-input"
+                      />
+                    </div>
+
+                    <div className="form-group full-width">
+                      <label className="form-label font-mono">VERIFICATION URL</label>
+                      <input
+                        type="text"
+                        value={cert.verificationUrl || ''}
+                        onChange={(e) => handleCertChange(idx, 'verificationUrl', e.target.value)}
+                        className="form-input"
+                        placeholder="https://coursera.org/verify/..."
+                      />
+                    </div>
+
+                    <div className="form-group full-width">
+                      <label className="form-label font-mono">SKILLS COVERED (COMMA SEPARATED)</label>
+                      <input
+                        type="text"
+                        value={Array.isArray(cert.skillsCovered) ? cert.skillsCovered.join(', ') : ''}
+                        onChange={(e) => handleCertChange(idx, 'skillsCovered', e.target.value)}
+                        className="form-input"
+                        placeholder="Python, Linux, Hardware"
                       />
                     </div>
                   </div>

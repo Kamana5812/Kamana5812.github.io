@@ -7,6 +7,11 @@ import './CertificationList.css';
 export function CertificationList() {
   const [ref, isInView] = useInView({ threshold: 0.1, triggerOnce: true });
 
+  const list = React.useMemo(() => {
+    const saved = localStorage.getItem('custom_certifications');
+    return saved ? JSON.parse(saved) : certificationsList;
+  }, []);
+
   return (
     <section
       id="certifications"
@@ -20,7 +25,7 @@ export function CertificationList() {
       </div>
 
       <div className="certifications-grid">
-        {certificationsList.map((cert) => (
+        {list.map((cert) => (
           <div key={cert.id} className="certification-card font-body">
             <div className="cert-card-top font-mono">
               <span className="cert-org font-mono">{cert.organization}</span>
