@@ -9,6 +9,11 @@ export function AiExploration() {
 
   const icons = [Sparkles, Brain, Cpu, Bot, Network, Code, Terminal];
 
+  const topicsList = React.useMemo(() => {
+    const saved = localStorage.getItem('custom_ai_exploration');
+    return saved ? JSON.parse(saved) : aiExplorationAreas;
+  }, []);
+
   return (
     <section
       id="ai-exploration"
@@ -31,7 +36,7 @@ export function AiExploration() {
       </div>
 
       <div className="ai-areas-grid">
-        {aiExplorationAreas.map((area, idx) => {
+        {topicsList.map((area, idx) => {
           const IconComp = icons[idx % icons.length];
           return (
             <div key={area.topic} className="ai-area-card">

@@ -7,6 +7,16 @@ import './Experience.css';
 export function Experience() {
   const [ref, isInView] = useInView({ threshold: 0.1, triggerOnce: true });
 
+  const expList = React.useMemo(() => {
+    const saved = localStorage.getItem('custom_experience');
+    return saved ? JSON.parse(saved) : experienceTimeline;
+  }, []);
+
+  const jList = React.useMemo(() => {
+    const saved = localStorage.getItem('custom_journey');
+    return saved ? JSON.parse(saved) : journeyTimeline;
+  }, []);
+
   return (
     <section
       id="journey"
@@ -32,7 +42,7 @@ export function Experience() {
         </h3>
 
         <div className="work-cards-grid">
-          {experienceTimeline.map((item) => (
+          {expList.map((item) => (
             <div key={item.id} className="work-experience-card">
               <div className="work-card-header font-mono">
                 <span className="work-type-badge">{item.type}</span>
@@ -79,7 +89,7 @@ export function Experience() {
         </h3>
 
         <ol className="journey-timeline-list">
-          {journeyTimeline.map((item) => (
+          {jList.map((item) => (
             <li key={item.id} className="journey-item-card">
               <div className="journey-card-header">
                 <span className="journey-period font-mono">{item.period}</span>

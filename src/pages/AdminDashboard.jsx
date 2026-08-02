@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import { Lock, Save, CheckCircle2, ShieldCheck, RefreshCw, X, Edit3, Plus, Trash2, Award, Wrench } from 'lucide-react';
+import { Lock, Save, CheckCircle2, ShieldCheck, RefreshCw, X, Edit3, Plus, Trash2, Award, Wrench, Briefcase, Sparkles } from 'lucide-react';
 import { personalInfo } from '../data/personal';
 import { featuredProjects } from '../data/projects';
-import { skillCategories } from '../data/skills';
+import { skillCategories, aiExplorationAreas } from '../data/skills';
 import { certificationsList } from '../data/certifications';
+import { experienceTimeline } from '../data/experience';
 import './AdminDashboard.css';
 
 export function AdminDashboard({ onClose }) {
@@ -34,6 +35,16 @@ export function AdminDashboard({ onClose }) {
   const [certs, setCerts] = useState(() => {
     const saved = localStorage.getItem('custom_certifications');
     return saved ? JSON.parse(saved) : [...certificationsList];
+  });
+
+  const [experiences, setExperiences] = useState(() => {
+    const saved = localStorage.getItem('custom_experience');
+    return saved ? JSON.parse(saved) : [...experienceTimeline];
+  });
+
+  const [aiTopics, setAiTopics] = useState(() => {
+    const saved = localStorage.getItem('custom_ai_exploration');
+    return saved ? JSON.parse(saved) : [...aiExplorationAreas];
   });
 
   const [saveStatus, setSaveStatus] = useState('idle');
@@ -80,6 +91,22 @@ export function AdminDashboard({ onClose }) {
     setCerts(updated);
   };
 
+  const handleExpChange = (index, field, value) => {
+    const updated = [...experiences];
+    if (field === 'technologies' || field === 'responsibilities') {
+      updated[index][field] = value.split(',').map((s) => s.trim());
+    } else {
+      updated[index][field] = value;
+    }
+    setExperiences(updated);
+  };
+
+  const handleAiTopicChange = (index, field, value) => {
+    const updated = [...aiTopics];
+    updated[index][field] = value;
+    setAiTopics(updated);
+  };
+
   const handleAddCert = () => {
     const newCert = {
       id: `cert-${Date.now()}`,
@@ -104,6 +131,8 @@ export function AdminDashboard({ onClose }) {
     localStorage.setItem('custom_projects', JSON.stringify(projects));
     localStorage.setItem('custom_skills', JSON.stringify(skills));
     localStorage.setItem('custom_certifications', JSON.stringify(certs));
+    localStorage.setItem('custom_experience', JSON.stringify(experiences));
+    localStorage.setItem('custom_ai_exploration', JSON.stringify(aiTopics));
 
     setTimeout(() => {
       setSaveStatus('success');
@@ -120,10 +149,14 @@ export function AdminDashboard({ onClose }) {
       localStorage.removeItem('custom_projects');
       localStorage.removeItem('custom_skills');
       localStorage.removeItem('custom_certifications');
+      localStorage.removeItem('custom_experience');
+      localStorage.removeItem('custom_ai_exploration');
       setPersonal({ ...personalInfo });
       setProjects([...featuredProjects]);
       setSkills([...skillCategories]);
       setCerts([...certificationsList]);
+      setExperiences([...experienceTimeline]);
+      setAiTopics([...aiExplorationAreas]);
       setSaveStatus('reset');
       setTimeout(() => {
         setSaveStatus('idle');
@@ -243,6 +276,22 @@ export function AdminDashboard({ onClose }) {
           >
             <Award size={16} />
             <span>Certifications</span>
+          </button>
+
+          <button
+            className={`admin-tab-btn ${activeTab === 'experience' ? 'active' : ''}`}
+            onClick={() => setActiveTab('experience')}
+          >
+            <Briefcase size={16} />
+            <span>Work Experience</span>
+          </button>
+
+          <button
+            className={`admin-tab-btn ${activeTab === 'ai' ? 'active' : ''}`}
+            onClick={() => setActiveTab('ai')}
+          >
+            <Sparkles size={16} />
+            <span>AI Focus Areas</span>
           </button>
         </aside>
 
@@ -520,6 +569,119 @@ export function AdminDashboard({ onClose }) {
                         onChange={(e) => handleCertChange(idx, 'skillsCovered', e.target.value)}
                         className="form-input"
                         placeholder="Python, Linux, Hardware"
+                      />
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
+
+          {activeTab === 'experience' && (
+            <div className="admin-section-box">
+              <h3 className="font-heading admin-section-title">Edit Work Experience & Internships</h3>
+
+              {experiences.map((exp, idx) => (
+                <div key={exp.id || idx} className="admin-project-card">
+                  <h4 className="font-heading project-card-title">
+                    Role #{idx + 1}: {exp.title} ({exp.organization})
+                  </h4>
+
+                  <div className="admin-form-grid">
+                    <div className="form-group">
+                      <label className="form-label font-mono">ROLE TITLE</label>
+                      <input
+                        type="text"
+                        value={exp.title || ''}
+                        onChange={(e) => handleExpChange(idx, 'title', e.target.value)}
+                        className="form-input"
+                      />
+                    </div>
+
+                    <div className="form-group">
+                      <label className="form-label font-mono">COMPANY / ORGANIZATION</label>
+                      <input
+                        type="text"
+                        value={exp.organization || ''}
+                        onChange={(e) => handleExpChange(idx, 'organization', e.target.value)}
+                        className="form-input"
+                      />
+                    </div>
+
+                    <div className="form-group">
+                      <label className="form-label font-mono">DURATION</label>
+                      <input
+                        type="text"
+                        value={exp.duration || ''}
+                        onChange={(e) => handleExpChange(idx, 'duration', e.target.value)}
+                        className="form-input"
+                      />
+                    </div>
+
+                    <div className="form-group">
+                      <label className="form-label font-mono">LOCATION</label>
+                      <input
+                        type="text"
+                        value={exp.location || ''}
+                        onChange={(e) => handleExpChange(idx, 'location', e.target.value)}
+                        className="form-input"
+                      />
+                    </div>
+
+                    <div className="form-group full-width">
+                      <label className="form-label font-mono">SUMMARY</label>
+                      <textarea
+                        rows="2"
+                        value={exp.summary || ''}
+                        onChange={(e) => handleExpChange(idx, 'summary', e.target.value)}
+                        className="form-textarea"
+                      ></textarea>
+                    </div>
+
+                    <div className="form-group full-width">
+                      <label className="form-label font-mono">TECHNOLOGIES (COMMA SEPARATED)</label>
+                      <input
+                        type="text"
+                        value={Array.isArray(exp.technologies) ? exp.technologies.join(', ') : ''}
+                        onChange={(e) => handleExpChange(idx, 'technologies', e.target.value)}
+                        className="form-input"
+                      />
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
+
+          {activeTab === 'ai' && (
+            <div className="admin-section-box">
+              <h3 className="font-heading admin-section-title">Edit AI Exploration Focus Areas</h3>
+
+              {aiTopics.map((topic, idx) => (
+                <div key={topic.topic || idx} className="admin-project-card">
+                  <h4 className="font-heading project-card-title">
+                    Topic #{idx + 1}: {topic.topic}
+                  </h4>
+
+                  <div className="admin-form-grid">
+                    <div className="form-group full-width">
+                      <label className="form-label font-mono">TOPIC NAME</label>
+                      <input
+                        type="text"
+                        value={topic.topic || ''}
+                        onChange={(e) => handleAiTopicChange(idx, 'topic', e.target.value)}
+                        className="form-input"
+                      />
+                    </div>
+
+                    <div className="form-group full-width">
+                      <label className="form-label font-mono">STATUS BADGE</label>
+                      <input
+                        type="text"
+                        value={topic.status || ''}
+                        onChange={(e) => handleAiTopicChange(idx, 'status', e.target.value)}
+                        className="form-input"
+                        placeholder="Certified, Active, Exploring, In Progress"
                       />
                     </div>
                   </div>
