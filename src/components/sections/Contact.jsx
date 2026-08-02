@@ -134,6 +134,17 @@ export function Contact() {
               <span>Email</span>
               <ArrowUpRight size={14} className="arrow-subtle" />
             </a>
+
+            <a
+              href="https://wa.me/918093859132?text=Hi%20Kamana!%20I%20visited%20your%20portfolio%20website%20and%20would%20like%20to%20connect."
+              target="_blank"
+              rel="noopener noreferrer"
+              className="social-direct-link"
+              style={{ color: '#25D366' }}
+            >
+              <span style={{ fontWeight: 'bold' }}>💬 WhatsApp</span>
+              <ArrowUpRight size={14} className="arrow-subtle" />
+            </a>
           </div>
         </div>
 
@@ -150,15 +161,26 @@ export function Contact() {
               <div>
                 <h4 className="font-heading">Message Delivered!</h4>
                 <p>
-                  Thank you! Your message was sent directly to Kamana's inbox ({personalInfo.email}).
+                  Thank you! Your message was sent to Kamana's email ({personalInfo.email}).
                 </p>
-                <button
-                  type="button"
-                  className="reset-btn font-mono"
-                  onClick={() => setFormStatus('idle')}
-                >
-                  Send Another Message
-                </button>
+                <div style={{ display: 'flex', gap: '10px', marginTop: '1rem', flexWrap: 'wrap', alignItems: 'center' }}>
+                  <a
+                    href={`https://wa.me/918093859132?text=${encodeURIComponent(`Hi Kamana! My Name: ${formData.name || 'Visitor'} (${formData.email || ''}). Message: ${formData.message || ''}`)}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn-primary-lime font-mono"
+                    style={{ background: '#25D366', borderColor: '#25D366', color: '#000', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', padding: '8px 14px', borderRadius: '4px', fontSize: '0.85rem' }}
+                  >
+                    💬 Also Send via WhatsApp (+91 8093859132)
+                  </a>
+                  <button
+                    type="button"
+                    className="reset-btn font-mono"
+                    onClick={() => setFormStatus('idle')}
+                  >
+                    Send Another Message
+                  </button>
+                </div>
               </div>
             </div>
           ) : (
