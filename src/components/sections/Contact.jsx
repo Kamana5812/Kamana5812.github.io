@@ -49,7 +49,8 @@ export function Contact() {
     setFormStatus('submitting');
 
     try {
-      const response = await fetch(`https://formsubmit.co/ajax/${personalInfo.email}`, {
+      // 1. Send Email Notification directly to kamanaagrawal833@gmail.com
+      const emailPromise = fetch(`https://formsubmit.co/ajax/${personalInfo.email}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -59,9 +60,22 @@ export function Contact() {
           name: formData.name,
           email: formData.email,
           message: formData.message,
-          _subject: `New Inquiry from ${formData.name} via kamana-agrawal.me`
+          _subject: `🚨 New Website Inquiry from ${formData.name}`
         })
       });
+
+      // 2. Send to Express Backend Server on Render
+      fetch('https://kamana-portfolio-api.onrender.com/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name: formData.name, email: formData.email, message: formData.message })
+      }).catch(() => {});
+
+      // 3. Automatically open WhatsApp message to +91 8093859132
+      const waText = encodeURIComponent(`Hi Kamana! I sent an inquiry via your portfolio site:\n\n👤 Name: ${formData.name}\n📧 Email: ${formData.email}\n💬 Message: ${formData.message}`);
+      window.open(`https://wa.me/918093859132?text=${waText}`, '_blank');
+
+      const response = await emailPromise;
 
       if (response.ok) {
         setFormStatus('success');

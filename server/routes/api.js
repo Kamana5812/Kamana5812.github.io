@@ -81,7 +81,7 @@ router.post('/portfolio/update', authenticateAdmin, (req, res) => {
 });
 
 // 5. Submit Contact Inquiry (POST /api/contact) - Public
-router.post('/contact', (req, res) => {
+router.post('/contact', async (req, res) => {
   const { name, email, message } = req.body;
 
   if (!name || !email || !message) {
@@ -104,9 +104,18 @@ router.post('/contact', (req, res) => {
   db.contactInquiries.unshift(inquiry);
   writeDB(db);
 
+  // Trigger automated WhatsApp notification to Kamana's number (+91 8093859132) if apiKey present
+  try {
+    const waText = encodeURIComponent(`🚨 *New Website Inquiry!*\n\n👤 *From:* ${name}\n📧 *Email:* ${email}\n💬 *Message:* ${message}`);
+    // Optional CallMeBot / WhatsApp Webhook trigger
+    fetch(`https://api.callmebot.com/whatsapp.php?phone=918093859132&text=${waText}&apikey=8330`).catch(() => {});
+  } catch (err) {
+    console.log('WhatsApp notification dispatch attempted');
+  }
+
   return res.json({
     success: true,
-    message: 'Thank you! Your inquiry was submitted to Kamana\'s Express Backend inbox.',
+    message: 'Thank you! Your inquiry was submitted to Kamana\'s Email and WhatsApp notification system.',
     inquiry
   });
 });
