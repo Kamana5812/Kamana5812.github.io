@@ -37,7 +37,7 @@ export function Contact() {
     return newErrors;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const validationErrors = validate();
 
@@ -47,10 +47,32 @@ export function Contact() {
     }
 
     setFormStatus('submitting');
-    setTimeout(() => {
-      setFormStatus('success');
-      setFormData({ name: '', email: '', subject: '', message: '' });
-    }, 1000);
+
+    try {
+      const response = await fetch(`https://formsubmit.co/ajax/${personalInfo.email}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          message: formData.message,
+          _subject: `New Inquiry from ${formData.name} via kamana-agrawal.me`
+        })
+      });
+
+      if (response.ok) {
+        setFormStatus('success');
+        setFormData({ name: '', email: '', subject: '', message: '' });
+      } else {
+        setFormStatus('error');
+      }
+    } catch (err) {
+      console.error('Contact Form Submission Error:', err);
+      setFormStatus('error');
+    }
   };
 
   return (
@@ -119,16 +141,16 @@ export function Contact() {
         <div className="contact-form-frame">
           <div className="form-frame-top font-mono">
             <span>DIRECT INQUIRY FORM</span>
-            <span className="honest-placeholder">Backend Config Pending</span>
+            <span className="honest-placeholder" style={{ borderColor: 'var(--color-lime)', color: 'var(--color-lime)' }}>Direct Email Endpoint</span>
           </div>
 
           {formStatus === 'success' ? (
             <div className="form-success-box font-body" role="alert" aria-live="polite">
               <CheckCircle2 size={24} className="success-icon" />
               <div>
-                <h4 className="font-heading">Message Recorded</h4>
+                <h4 className="font-heading">Message Delivered!</h4>
                 <p>
-                  Thank you! Your message was recorded locally. (Form service parameters can be connected once live email settings are provided).
+                  Thank you! Your message was sent directly to Kamana's inbox ({personalInfo.email}).
                 </p>
                 <button
                   type="button"
@@ -141,6 +163,12 @@ export function Contact() {
             </div>
           ) : (
             <form onSubmit={handleSubmit} className="contact-form" noValidate>
+              {formStatus === 'error' && (
+                <div className="error-msg font-mono" style={{ marginBottom: '1rem', color: '#ff6b6b' }} role="alert">
+                  <AlertCircle size={16} /> Something went wrong. Please try emailing directly at {personalInfo.email}
+                </div>
+              )}
+
               <div className="form-row">
                 <div className="form-group">
                   <label htmlFor="contact-name" className="form-label font-mono">
