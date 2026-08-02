@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
-import { ArrowDown, ArrowUpRight } from 'lucide-react';
-import { SocialLinks } from '../shared/SocialLinks';
+import { ArrowDown } from 'lucide-react';
 import { personalInfo } from '../../data/personal';
 import './MobileNavigation.css';
 
@@ -13,14 +12,10 @@ export function MobileNavigation({ isOpen, onClose, navItems = [], activeSection
     };
 
     if (isOpen) {
-      document.body.style.overflow = 'hidden';
       window.addEventListener('keydown', handleKeyDown);
-    } else {
-      document.body.style.overflow = '';
     }
 
     return () => {
-      document.body.style.overflow = '';
       window.removeEventListener('keydown', handleKeyDown);
     };
   }, [isOpen, onClose]);
@@ -30,20 +25,15 @@ export function MobileNavigation({ isOpen, onClose, navItems = [], activeSection
   return (
     <div
       id="mobile-navigation"
-      className="mobile-nav-overlay"
+      className="mobile-nav-dropdown"
       role="dialog"
       aria-modal="true"
       aria-label="Mobile Navigation"
     >
-      <div className="mobile-nav-content">
-        <div className="mobile-nav-header font-mono">
-          <span className="mobile-nav-eyebrow">NAVIGATION</span>
-        </div>
-
+      <div className="mobile-nav-card">
         <nav className="mobile-nav-list-container">
           <ul className="mobile-nav-list">
-            {navItems.map((item, index) => {
-              const numStr = String(index + 1).padStart(2, '0');
+            {navItems.map((item) => {
               const isActive = activeSection === item.id;
               
               return (
@@ -53,8 +43,8 @@ export function MobileNavigation({ isOpen, onClose, navItems = [], activeSection
                     className={`mobile-nav-link ${isActive ? 'active' : ''}`}
                     onClick={onClose}
                   >
-                    <span className="mobile-nav-num font-mono">{numStr}</span>
-                    <span className="mobile-nav-label font-heading">{item.label}</span>
+                    <span className="mobile-nav-label font-body">{item.label}</span>
+                    {isActive && <span className="mobile-active-dot" aria-hidden="true" />}
                   </a>
                 </li>
               );
@@ -72,10 +62,6 @@ export function MobileNavigation({ isOpen, onClose, navItems = [], activeSection
             <span>Resume (PDF)</span>
             <ArrowDown size={14} />
           </a>
-
-          <div className="mobile-socials-wrapper">
-            <SocialLinks links={personalInfo.socials} showLabels={false} />
-          </div>
         </div>
       </div>
     </div>
