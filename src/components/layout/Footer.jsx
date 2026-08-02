@@ -3,7 +3,7 @@ import { ArrowUp } from 'lucide-react';
 import { personalInfo } from '../../data/personal';
 import './Footer.css';
 
-export function Footer() {
+export function Footer({ onOpenAdmin }) {
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -17,6 +17,16 @@ export function Footer() {
 
         <div className="footer-center">
           <span>Designed &amp; Built by {personalInfo.brandLogo}</span>
+          {onOpenAdmin && (
+            <button
+              type="button"
+              className="admin-footer-link"
+              onClick={onOpenAdmin}
+              style={{ marginLeft: '12px', background: 'none', border: 'none', color: 'var(--text-muted)', cursor: 'pointer', fontSize: '0.75rem' }}
+            >
+              • Content Manager
+            </button>
+          )}
         </div>
 
         <div className="footer-right">

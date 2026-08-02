@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Navbar } from './components/layout/Navbar';
 import { Footer } from './components/layout/Footer';
 
@@ -13,11 +13,19 @@ import { PhilosophyStatement } from './components/sections/PhilosophyStatement';
 import { Contact } from './components/sections/Contact';
 
 import { ProjectCaseStudy } from './pages/ProjectCaseStudy';
+import { AdminDashboard } from './pages/AdminDashboard';
 import { useActiveSection } from './hooks/useActiveSection';
 
 export default function App() {
   const [selectedCaseStudy, setSelectedCaseStudy] = useState(null);
+  const [isAdminOpen, setIsAdminOpen] = useState(false);
   const activeSection = useActiveSection(['home', 'about', 'projects', 'skills', 'journey', 'certifications', 'contact']);
+
+  useEffect(() => {
+    if (window.location.search.includes('admin=true') || window.location.hash === '#admin') {
+      setIsAdminOpen(true);
+    }
+  }, []);
 
   const handleSelectCaseStudy = (project) => {
     setSelectedCaseStudy(project);
@@ -29,6 +37,10 @@ export default function App() {
 
   return (
     <div className="app-container">
+      {isAdminOpen && (
+        <AdminDashboard onClose={() => setIsAdminOpen(false)} />
+      )}
+
       {/* Accessibility Skip Link */}
       <a href="#main-content" className="skip-link font-mono">
         Skip to main content
@@ -85,7 +97,7 @@ export default function App() {
       </div>
 
       {/* Footer */}
-      <Footer />
+      <Footer onOpenAdmin={() => setIsAdminOpen(true)} />
     </div>
   );
 }

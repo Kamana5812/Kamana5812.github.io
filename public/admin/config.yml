@@ -1,0 +1,29 @@
+backend:
+  name: github
+  repo: Kamana5812/Kamana5812.github.io
+  branch: main
+  base_url: https://decap-cms-oauth.vercel.app
+
+media_folder: "public/uploads"
+public_folder: "/uploads"
+
+collections:
+  - name: "personal"
+    label: "Personal Bio & Links"
+    file: "src/data/personal.json"
+    fields:
+      - { label: "Name", name: "name", widget: "string" }
+      - { label: "Primary Title", name: "primaryTitle", widget: "string" }
+      - { label: "Secondary Title", name: "secondaryTitle", widget: "string" }
+      - { label: "Education Status", name: "educationStatus", widget: "string" }
+      - { label: "Email", name: "email", widget: "string" }
+      - { label: "Supporting Line", name: "supportingLine", widget: "text" }
+      - { label: "About Lead", name: "aboutLead", widget: "string" }
+      - { label: "About Body 1", name: "aboutBody1", widget: "text" }
+      - { label: "About Body 2", name: "aboutBody2", widget: "text" }
+
+  - name: "projects"
+    label: "Featured Projects"
+    file: "src/data/projects.json"
+    fields:
+      - { label: "Projects List", name: "featuredProjects", widget: "list" }
