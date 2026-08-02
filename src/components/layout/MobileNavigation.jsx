@@ -69,8 +69,8 @@ export function MobileNavigation({ isOpen, onClose, navItems = [], activeSection
             rel="noopener noreferrer"
             className="mobile-resume-btn font-mono"
           >
-            <span>Download Resume (PDF)</span>
-            <ArrowDown size={16} />
+            <span>Resume (PDF)</span>
+            <ArrowDown size={14} />
           </a>
 
           <div className="mobile-socials-wrapper">
