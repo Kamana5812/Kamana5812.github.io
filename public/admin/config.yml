@@ -1,3 +1,6 @@
+site_url: https://kamana-agrawal.me
+display_url: https://kamana-agrawal.me
+
 backend:
   name: github
   repo: Kamana5812/Kamana5812.github.io
