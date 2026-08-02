@@ -9,7 +9,7 @@ public_folder: "/uploads"
 
 collections:
   - name: "personal"
-    label: "Personal Bio & Links"
+    label: "Personal Bio & Info"
     file: "src/data/personal.json"
     fields:
       - { label: "Name", name: "name", widget: "string" }
@@ -20,10 +20,27 @@ collections:
       - { label: "Supporting Line", name: "supportingLine", widget: "text" }
       - { label: "About Lead", name: "aboutLead", widget: "string" }
       - { label: "About Body 1", name: "aboutBody1", widget: "text" }
-      - { label: "About Body 2", name: "aboutBody2", widget: "text" }
 
   - name: "projects"
     label: "Featured Projects"
     file: "src/data/projects.json"
     fields:
       - { label: "Projects List", name: "featuredProjects", widget: "list" }
+
+  - name: "skills"
+    label: "Skills & Tools"
+    file: "src/data/skills.json"
+    fields:
+      - { label: "Skill Categories", name: "skillCategories", widget: "list" }
+
+  - name: "certifications"
+    label: "Certifications"
+    file: "src/data/certifications.json"
+    fields:
+      - { label: "Certifications List", name: "certificationsList", widget: "list" }
+
+  - name: "experience"
+    label: "Work Experience"
+    file: "src/data/experience.json"
+    fields:
+      - { label: "Experience Timeline", name: "experienceTimeline", widget: "list" }
