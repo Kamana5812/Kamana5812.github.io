@@ -1,21 +1,12 @@
-import React, { useState } from 'react';
-import { ArrowRight, ArrowUpRight, Code2, User } from 'lucide-react';
+import React from 'react';
+import { ArrowUpRight, ArrowDown, GraduationCap, MapPin, Target, Sparkles } from 'lucide-react';
 import { personalInfo } from '../../data/personal';
 import { useInView } from '../../hooks/useInView';
+import { HeroWorkspace3D } from '../3d/HeroWorkspace3D';
 import './Hero.css';
 
 export function Hero() {
   const [ref, isInView] = useInView({ threshold: 0.1, triggerOnce: true });
-  const [imgError, setImgError] = useState(false);
-
-  const techStack = [
-    { name: "React", icon: "atom" },
-    { name: "JavaScript", icon: "js" },
-    { name: "Python", icon: "py" },
-    { name: "Node.js", icon: "node" },
-    { name: "MongoDB", icon: "db" },
-    { name: "Git", icon: "git" }
-  ];
 
   return (
     <section
@@ -25,105 +16,79 @@ export function Hero() {
       aria-label="Hero Introduction"
     >
       <div className="hero-grid grid-12">
-        {/* Left Side (7 Columns) */}
+        {/* Left Column (7 Columns) */}
         <div className="hero-content-col">
-          <div className="hero-eyebrow-wrapper">
-            <span className="hero-eyebrow font-mono">
-              {personalInfo.eyebrow}
-            </span>
+          {/* Greeting Pill */}
+          <div className="hero-greeting-pill font-mono">
+            <span className="greeting-status-dot" aria-hidden="true" />
+            <span>Hey, I'm</span>
           </div>
 
+          {/* Main Title */}
           <h1 className="hero-main-title font-heading">
-            {personalInfo.heroHeadlineLead}{' '}
-            <span className="highlight-lime">{personalInfo.heroHeadlineAccent}</span>
+            Kamana <span className="highlight-lime">Agrawal</span>
           </h1>
 
-          <p className="hero-description font-body">
-            {personalInfo.supportingLine}
+          {/* Subtitle / Focus */}
+          <p className="hero-focus-subtitle font-heading">
+            AI/ML Enthusiast <span className="subtitle-divider">|</span> Full-Stack Developer
           </p>
 
-          {/* Action Buttons */}
-          <div className="hero-cta-group">
-            <a href="#projects" className="btn-primary-lime font-body">
-              <span>Explore My Work</span>
-              <ArrowRight size={18} aria-hidden="true" />
-            </a>
-
-            <a href="#contact" className="btn-secondary-outline font-body">
-              <span>Let's Connect</span>
-              <ArrowUpRight size={18} aria-hidden="true" />
-            </a>
+          {/* Descriptive Lines */}
+          <div className="hero-description-block font-body">
+            <p>Building AI, Web &amp; IoT solutions for a smarter tomorrow.</p>
+            <p>Turning ideas into intelligent solutions.</p>
           </div>
 
-          {/* Tech Stack Row */}
-          <div className="hero-tech-stack">
-            <span className="tech-stack-label font-mono">TECH STACK</span>
-            <div className="tech-chips-row">
-              {techStack.map((tech) => (
-                <div key={tech.name} className="tech-stack-chip font-mono">
-                  <span className="chip-dot"></span>
-                  <span>{tech.name}</span>
-                </div>
-              ))}
+          {/* 3 Metadata Badge Cards */}
+          <div className="hero-meta-badges-row font-mono">
+            <div className="meta-badge-card">
+              <GraduationCap size={18} className="meta-icon text-accent" />
+              <div className="meta-info">
+                <span className="meta-title font-heading">B.Tech CSE Student</span>
+                <span className="meta-sub">College of Engineering Bhubaneswar</span>
+              </div>
             </div>
+
+            <div className="meta-badge-card">
+              <MapPin size={18} className="meta-icon text-accent" />
+              <div className="meta-info">
+                <span className="meta-title font-heading">Bhubaneswar, Odisha</span>
+                <span className="meta-sub">India</span>
+              </div>
+            </div>
+
+            <div className="meta-badge-card">
+              <Target size={18} className="meta-icon text-accent" />
+              <div className="meta-info">
+                <span className="meta-title font-heading">Aspiring</span>
+                <span className="meta-sub">AI/ML Engineer</span>
+              </div>
+            </div>
+          </div>
+
+          {/* CTA Action Buttons */}
+          <div className="hero-cta-group">
+            <a href="#projects" className="btn-hero-primary font-body">
+              <span>View My Work</span>
+              <ArrowUpRight size={18} aria-hidden="true" />
+            </a>
+
+            <a
+              href={personalInfo.resumeUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-hero-secondary font-body"
+            >
+              <span>Download Resume</span>
+              <ArrowDown size={16} aria-hidden="true" />
+            </a>
           </div>
         </div>
 
-        {/* Right Side Visual (5 Columns) — Profile Photo & Developer Graphic */}
+        {/* Right Side Visual (5 Columns) — 3D Workspace Stage */}
         <div className="hero-visual-col">
-          <div className="hero-graphic-container">
-            {/* Subtle Technical Radial Grid Backdrop */}
-            <div className="radial-grid-background" aria-hidden="true">
-              <div className="grid-circle circle-outer"></div>
-              <div className="grid-circle circle-inner"></div>
-              <div className="lime-glow-core"></div>
-            </div>
-
-            {/* Profile Photo Frame */}
-            <div className="hero-photo-frame">
-              <div className="photo-ring-glow font-mono">
-                {!imgError ? (
-                  <img
-                    src={personalInfo.profileImage}
-                    alt={personalInfo.name}
-                    className="hero-profile-img"
-                    onError={() => setImgError(true)}
-                  />
-                ) : (
-                  <div className="photo-fallback-graphic">
-                    <User size={54} className="text-accent" />
-                    <span className="fallback-name font-heading">{personalInfo.name}</span>
-                    <span className="fallback-sub font-mono">Full-Stack Developer</span>
-                  </div>
-                )}
-              </div>
-
-              {/* Photo Corner Label Badge */}
-              <div className="photo-badge font-mono">
-                <span className="status-dot-lime"></span>
-                <span>{personalInfo.name}</span>
-              </div>
-            </div>
-
-            {/* Floating Dark Card: Currently Building */}
-            <div className="floating-building-card">
-              <div className="card-top font-mono">
-                <span className="building-label">
-                  <span className="status-dot-lime"></span> Currently Building
-                </span>
-                <Code2 size={16} className="card-code-icon" />
-              </div>
-
-              <p className="card-heading font-body">
-                AI-powered web experiences that solve real problems.
-              </p>
-
-              <a href="#projects" className="card-link font-mono">
-                <span>View Projects</span>
-                <ArrowRight size={14} />
-              </a>
-            </div>
-          </div>
+          <HeroWorkspace3D />
         </div>
       </div>
     </section>

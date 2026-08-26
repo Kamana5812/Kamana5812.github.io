@@ -1,5 +1,6 @@
 import React from 'react';
 import { ArrowUpRight, Cpu, Compass } from 'lucide-react';
+import { TiltCard } from '../3d/TiltCard';
 import './ProjectShowcase.css';
 
 export function ProjectShowcase({ project, onSelectCaseStudy }) {
@@ -34,45 +35,47 @@ export function ProjectShowcase({ project, onSelectCaseStudy }) {
   };
 
   return (
-    <article
-      id={`project-${id}`}
-      className="dark-project-card"
-      aria-labelledby={`project-title-${id}`}
-    >
-      <div className="card-media-wrapper" onClick={() => onSelectCaseStudy(project)}>
-        {renderThumbnail()}
-      </div>
+    <TiltCard maxTilt={6} scale={1.015} className="project-card-tilt-wrap">
+      <article
+        id={`project-${id}`}
+        className="dark-project-card"
+        aria-labelledby={`project-title-${id}`}
+      >
+        <div className="card-media-wrapper" onClick={() => onSelectCaseStudy(project)}>
+          {renderThumbnail()}
+        </div>
 
-      <div className="card-info-content">
-        <div className="card-title-row">
-          <h3 id={`project-title-${id}`} className="project-card-title font-heading">
-            <button type="button" onClick={() => onSelectCaseStudy(project)} className="title-link-btn">
-              {title}
+        <div className="card-info-content">
+          <div className="card-title-row">
+            <h3 id={`project-title-${id}`} className="project-card-title font-heading">
+              <button type="button" onClick={() => onSelectCaseStudy(project)} className="title-link-btn">
+                {title}
+              </button>
+            </h3>
+
+            <button
+              type="button"
+              onClick={() => onSelectCaseStudy(project)}
+              className="arrow-link-btn"
+              aria-label={`View ${title} details`}
+            >
+              <ArrowUpRight size={20} />
             </button>
-          </h3>
+          </div>
 
-          <button
-            type="button"
-            onClick={() => onSelectCaseStudy(project)}
-            className="arrow-link-btn"
-            aria-label={`View ${title} details`}
-          >
-            <ArrowUpRight size={20} />
-          </button>
+          <p className="card-desc font-body">
+            {tagline || description}
+          </p>
+
+          <div className="card-tags-row">
+            {technologies.map((tech) => (
+              <span key={tech} className="tag-chip tag-chip--mono">
+                {tech}
+              </span>
+            ))}
+          </div>
         </div>
-
-        <p className="card-desc font-body">
-          {tagline || description}
-        </p>
-
-        <div className="card-tags-row">
-          {technologies.map((tech) => (
-            <span key={tech} className="tag-chip tag-chip--mono">
-              {tech}
-            </span>
-          ))}
-        </div>
-      </div>
-    </article>
+      </article>
+    </TiltCard>
   );
 }

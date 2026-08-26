@@ -5,9 +5,14 @@ export const skillCategories = [
     skills: ["React.js", "JavaScript (ES6+)", "HTML5", "CSS3", "Responsive Web Design"]
   },
   {
-    category: "PROGRAMMING & CORE",
+    category: "BACKEND",
     icon: "Server",
-    skills: ["C Programming", "Data Structures & Algorithms (DSA)", "Object-Oriented Logic"]
+    skills: ["Node.js", "Express.js", "MongoDB", "FastAPI", "REST APIs"]
+  },
+  {
+    category: "PROGRAMMING & CORE",
+    icon: "Terminal",
+    skills: ["C Programming", "Python", "Data Structures & Algorithms (DSA)", "Object-Oriented Logic"]
   },
   {
     category: "IOT & EMBEDDED",
@@ -17,12 +22,12 @@ export const skillCategories = [
   {
     category: "AI & EXPLORATION",
     icon: "Brain",
-    skills: ["Python", "AI APIs", "Prompt Engineering", "Machine Learning Fundamentals"]
+    skills: ["AI APIs", "Prompt Engineering", "Machine Learning Fundamentals", "LLM Integration"]
   },
   {
-    category: "TOOLS & WORKFLOWS",
+    category: "TOOLS & DEVOPS",
     icon: "Wrench",
-    skills: ["Git", "GitHub", "VS Code", "Vite", "Vercel"]
+    skills: ["Git", "GitHub", "Docker", "AWS EC2", "VS Code", "Vite", "Vercel"]
   },
   {
     category: "PROFESSIONAL & DESIGN",

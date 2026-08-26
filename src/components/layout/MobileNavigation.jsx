@@ -3,7 +3,7 @@ import { ArrowDown } from 'lucide-react';
 import { personalInfo } from '../../data/personal';
 import './MobileNavigation.css';
 
-export function MobileNavigation({ isOpen, onClose, navItems = [], activeSection = 'home', resumeUrl }) {
+export function MobileNavigation({ isOpen, onClose, navItems = [], activeSection = 'home', resumeUrl, onNavClick }) {
   const menuRef = useRef(null);
 
   useEffect(() => {
@@ -56,7 +56,13 @@ export function MobileNavigation({ isOpen, onClose, navItems = [], activeSection
                   <a
                     href={`#${item.id}`}
                     className={`mobile-nav-link ${isActive ? 'active' : ''}`}
-                    onClick={onClose}
+                    onClick={(e) => {
+                      if (onNavClick) {
+                        onNavClick(e, item.id);
+                      } else {
+                        onClose();
+                      }
+                    }}
                   >
                     <span className="mobile-nav-label font-body">{item.label}</span>
                     {isActive && <span className="mobile-active-dot" aria-hidden="true" />}

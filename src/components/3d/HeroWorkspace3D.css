@@ -1,0 +1,199 @@
+/* ==========================================================================
+   Hero 3D Workspace Stage Styles
+   ========================================================================== */
+
+.hero-workspace-3d-stage {
+  position: relative;
+  width: 100%;
+  max-width: 580px;
+  height: 500px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  perspective: 1200px;
+}
+
+.workspace-webgl-mount {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: auto;
+  cursor: grab;
+}
+
+.workspace-webgl-mount:active {
+  cursor: grabbing;
+}
+
+/* 3D Laptop Chassis Overlay */
+.laptop-3d-chassis {
+  position: relative;
+  z-index: 3;
+  width: 82%;
+  max-width: 440px;
+  transform: rotateX(8deg) rotateY(-8deg) rotateZ(1deg);
+  transform-style: preserve-3d;
+  transition: transform 300ms ease-out;
+  pointer-events: auto;
+}
+
+.laptop-3d-chassis:hover {
+  transform: rotateX(4deg) rotateY(-4deg) rotateZ(0deg) scale(1.02);
+}
+
+.laptop-screen-bezel {
+  background: #111111;
+  border: 2px solid #222222;
+  border-radius: 12px 12px 0 0;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8), 0 0 30px rgba(183, 255, 0, 0.12);
+  overflow: hidden;
+  position: relative;
+}
+
+.laptop-notch {
+  height: 14px;
+  background: #0a0a0a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.camera-lens {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: #333333;
+}
+
+.camera-led {
+  width: 2px;
+  height: 2px;
+  border-radius: 50%;
+  background: #00ff66;
+  opacity: 0.7;
+}
+
+/* IDE Window Bar */
+.ide-window-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #141414;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 6px 12px;
+}
+
+.window-dots {
+  display: flex;
+  gap: 5px;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.dot-red { background: #ff5f56; }
+.dot-yellow { background: #ffbd2e; }
+.dot-green { background: #27c93f; }
+
+.ide-tabs {
+  display: flex;
+  gap: 4px;
+}
+
+.ide-tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 10px;
+  background: transparent;
+  border: none;
+  border-radius: 4px;
+  color: var(--text-muted);
+  font-size: 0.75rem;
+  font-family: inherit;
+  cursor: pointer;
+  transition: background 150ms, color 150ms;
+}
+
+.ide-tab.active {
+  background: #1c1c1c;
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+.ide-brand-badge {
+  font-size: 0.7rem;
+  color: var(--accent);
+  opacity: 0.85;
+}
+
+/* Code Body */
+.ide-code-body {
+  background: #0d0d0d;
+  padding: 14px 16px;
+  font-size: 0.74rem;
+  line-height: 1.5;
+  color: #e0e0e0;
+  max-height: 240px;
+  overflow-y: hidden;
+}
+
+.code-block {
+  margin: 0;
+}
+
+.c-keyword { color: #ff7b72; }
+.c-string { color: #a5d6ff; }
+.c-fn { color: #d2a8ff; }
+.c-tag { color: #7ee787; }
+.c-attr { color: #79c0ff; }
+.c-comment { color: #8b949e; font-style: italic; }
+.c-highlight {
+  color: var(--accent);
+  font-weight: 700;
+  text-shadow: 0 0 8px rgba(183, 255, 0, 0.4);
+}
+
+/* Laptop Keyboard Deck Base */
+.laptop-deck-base {
+  height: 16px;
+  background: linear-gradient(to bottom, #1e1e1e 0%, #121212 100%);
+  border: 1px solid #282828;
+  border-radius: 0 0 14px 14px;
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.6);
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.laptop-trackpad {
+  width: 70px;
+  height: 4px;
+  background: #2a2a2a;
+  border-radius: 2px;
+}
+
+@media (max-width: 1023px) {
+  .hero-workspace-3d-stage {
+    max-width: 440px;
+    height: 400px;
+    margin: 0 auto;
+  }
+
+  .laptop-3d-chassis {
+    width: 90%;
+    transform: none;
+  }
+
+  .laptop-3d-chassis:hover {
+    transform: none;
+  }
+}

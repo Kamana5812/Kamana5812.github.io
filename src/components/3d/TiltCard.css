@@ -1,0 +1,31 @@
+/* ==========================================================================
+   3D Tilt Card Component Styles
+   ========================================================================== */
+
+.tilt-card-3d {
+  position: relative;
+  transform-style: preserve-3d;
+  will-change: transform;
+  border-radius: inherit;
+}
+
+.tilt-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+  transform-style: preserve-3d;
+}
+
+.tilt-card-glare {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+  pointer-events: none;
+  z-index: 10;
+  mix-blend-mode: screen;
+  transition: opacity 250ms ease-out;
+}

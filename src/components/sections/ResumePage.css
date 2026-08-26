@@ -1,0 +1,292 @@
+/* ==========================================================================
+   FAANG / Jake's LaTeX-Style Resume  ·  ATS-Friendly
+   Mimics the Computer Modern font + LaTeX typesetting of the #1 FAANG template.
+   ========================================================================== */
+
+/* ── Web-font: CMU Serif (Computer Modern Unicode — identical to LaTeX output) ── */
+@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap');
+
+/* ── Toolbar ── */
+.rp-toolbar {
+  background: #0d0d0d;
+  border-bottom: 1px solid rgba(183, 255, 0, 0.22);
+  padding: 10px 28px;
+  position: sticky;
+  top: 0;
+  z-index: 200;
+}
+
+.rp-toolbar-inner {
+  max-width: 900px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.rp-toolbar-label {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.7rem;
+  color: #b7ff00;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+}
+
+.rp-toolbar-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.rp-btn-print {
+  background: #b7ff00;
+  color: #080808;
+  border: none;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 6px 16px;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: transform 120ms;
+}
+
+.rp-btn-print:hover { transform: translateY(-1px); }
+
+.rp-btn-back {
+  background: transparent;
+  color: #aaa;
+  border: 1px solid #333;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 500;
+  padding: 6px 14px;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: color 150ms, border-color 150ms;
+}
+
+.rp-btn-back:hover { color: #fff; border-color: #666; }
+
+/* ── Outer Page Shell ── */
+.rp-page {
+  /* Jake's template: letter paper, 0.5in margins all round */
+  max-width: 816px;      /* 8.5in @ 96dpi */
+  min-height: 1056px;    /* 11in @ 96dpi */
+  margin: 28px auto 60px;
+  padding: 36px 40px 36px 40px;   /* ≈ 0.5in margins */
+  background: #ffffff;
+  box-shadow: 0 4px 32px rgba(0,0,0,0.15);
+  border-radius: 3px;
+
+  /* LaTeX Computer Modern approximation via EB Garamond + fallback */
+  font-family: 'EB Garamond', 'Georgia', 'Times New Roman', serif;
+  font-size: 10.5pt;
+  line-height: 1.35;
+  color: #000;
+
+  /* ATS: never use columns or floats for main content */
+}
+
+/* ── Header ── */
+.rp-header {
+  text-align: center;
+  margin-bottom: 4pt;
+}
+
+.rp-name {
+  font-family: 'EB Garamond', serif;
+  font-size: 22pt;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: #000;
+  margin: 0 0 4pt;
+  line-height: 1.1;
+}
+
+.rp-contact-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 4px;
+  font-size: 9.5pt;
+  color: #000;
+}
+
+.rp-contact-row a {
+  color: #000;
+  text-decoration: underline;
+}
+
+.rp-sep {
+  color: #555;
+  font-size: 9pt;
+  margin: 0 1px;
+}
+
+/* ── Section ── */
+.rp-section {
+  margin-top: 8pt;
+}
+
+/* Section heading: bold, uppercase, thin rule below — exactly like Jake's */
+.rp-section-heading {
+  font-family: 'EB Garamond', serif;
+  font-size: 11pt;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #000;
+  border-bottom: 1.2px solid #000;
+  padding-bottom: 1pt;
+  margin-bottom: 4pt;
+}
+
+/* ── Entry ── */
+.rp-entry {
+  margin-bottom: 6pt;
+}
+
+/* Two-column flex row: left content + right date */
+.rp-entry-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 6px;
+}
+
+.rp-bold {
+  font-weight: 700;
+  font-size: 10.5pt;
+}
+
+.rp-italic {
+  font-style: italic;
+  font-size: 10pt;
+  color: #111;
+}
+
+.rp-date {
+  font-size: 10pt;
+  white-space: nowrap;
+  flex-shrink: 0;
+  color: #000;
+}
+
+.rp-small-muted {
+  font-size: 9pt;
+  color: #444;
+  font-style: italic;
+}
+
+/* Project links inline with title */
+.rp-proj-links {
+  font-size: 9.5pt;
+  font-weight: 400;
+  font-style: normal;
+  margin-left: 6px;
+}
+
+.rp-proj-links a {
+  color: #000;
+  text-decoration: underline;
+}
+
+.rp-proj-links .rp-sep {
+  margin: 0 3px;
+}
+
+/* ── Bullet points ── */
+/* Jake's style: small left-indent, dash or bullet, tight spacing */
+.rp-bullets {
+  margin: 2pt 0 0 13px;
+  padding: 0;
+  list-style: none;
+}
+
+.rp-bullets li {
+  position: relative;
+  padding-left: 10px;
+  font-size: 10pt;
+  color: #000;
+  margin-bottom: 1.5pt;
+  line-height: 1.38;
+}
+
+.rp-bullets li::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  color: #000;
+  font-size: 8pt;
+  top: 1.5pt;
+}
+
+/* ── Skills list (no bullet dot — dash style) ── */
+.rp-skills-list {
+  margin: 2pt 0 0 13px;
+  padding: 0;
+  list-style: none;
+}
+
+.rp-skills-list li {
+  position: relative;
+  padding-left: 10px;
+  font-size: 10pt;
+  color: #000;
+  margin-bottom: 1.5pt;
+  line-height: 1.38;
+}
+
+.rp-skills-list li::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  color: #000;
+  font-size: 8pt;
+  top: 1.5pt;
+}
+
+/* ── Credential ID ── */
+.rp-cred {
+  font-size: 9pt;
+  color: #555;
+}
+
+/* ==========================================================================
+   PRINT STYLES — strips toolbar, forces clean A4/Letter page margins
+   ========================================================================== */
+@media print {
+  /* Hide everything except the paper */
+  .no-print { display: none !important; }
+
+  body {
+    background: white !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  .rp-page {
+    box-shadow: none !important;
+    border-radius: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    max-width: 100% !important;
+    min-height: auto !important;
+  }
+
+  /* Let browser handle page margins */
+  @page {
+    size: letter;
+    margin: 0.5in;
+  }
+
+  /* Force black links (ATS parsers prefer plain text) */
+  a { color: #000 !important; text-decoration: none !important; }
+
+  /* Avoid mid-entry page breaks */
+  .rp-entry { page-break-inside: avoid; }
+  .rp-section { page-break-inside: avoid; }
+}

@@ -1,0 +1,386 @@
+/* ==========================================================================
+   AI System Architecture & Command Center Styles
+   ========================================================================== */
+
+.ai-system-command-center {
+  background: rgba(14, 14, 14, 0.85);
+  border: 1px solid var(--border);
+  border-radius: var(--border-radius-lg);
+  overflow: hidden;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5), 0 0 25px rgba(183, 255, 0, 0.06);
+  backdrop-filter: blur(14px);
+  margin: var(--space-4) 0;
+  transition: border-color var(--transition-medium), box-shadow var(--transition-medium);
+}
+
+.ai-system-command-center:hover {
+  border-color: var(--border-hover);
+  box-shadow: var(--glow-lime-subtle);
+}
+
+/* Header Bar */
+.command-header-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 18px;
+  background: rgba(18, 18, 18, 0.9);
+  border-bottom: 1px solid var(--border);
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.command-title-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: var(--text-mono-sm);
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.live-status-pulse {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 8px var(--accent);
+  animation: statusPulse 2s infinite ease-in-out;
+}
+
+@keyframes statusPulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.85); }
+}
+
+.command-tab-buttons {
+  display: flex;
+  gap: 6px;
+}
+
+.cmd-tab-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--border);
+  border-radius: var(--border-radius-full);
+  color: var(--text-secondary);
+  font-size: var(--text-mono-sm);
+  font-family: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 150ms, color 150ms, border-color 150ms;
+}
+
+.cmd-tab-btn:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--text-primary);
+}
+
+.cmd-tab-btn.active {
+  background: var(--accent-soft);
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+/* Stage Body */
+.command-stage-body {
+  padding: var(--space-4);
+}
+
+/* Tab 1: LLM Stream Stage */
+.stage-controls-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-3);
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.metrics-group {
+  display: flex;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+}
+
+.metric-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--border-dark);
+  padding: 4px 10px;
+  border-radius: var(--border-radius-sm);
+}
+
+.metric-chip strong {
+  color: var(--text-primary);
+}
+
+.action-buttons-group {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.btn-trigger-stream {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  background: var(--accent);
+  color: #080808;
+  border: none;
+  border-radius: var(--border-radius-full);
+  font-size: 0.75rem;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 0 16px rgba(183, 255, 0, 0.3);
+  transition: transform 150ms, background 150ms, box-shadow 150ms;
+}
+
+.btn-trigger-stream:hover:not(:disabled) {
+  background: var(--accent-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 0 24px rgba(183, 255, 0, 0.45);
+}
+
+.btn-trigger-stream:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.btn-reset-stream {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: color 150ms, background 150ms;
+}
+
+.btn-reset-stream:hover {
+  background: rgba(255, 255, 255, 0.12);
+  color: var(--text-primary);
+}
+
+.terminal-screen {
+  background: #0a0a0a;
+  border: 1px solid var(--border-dark);
+  border-radius: var(--border-radius-md);
+  overflow: hidden;
+}
+
+.terminal-header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 12px;
+  background: #111111;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.terminal-name {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  margin-left: 6px;
+}
+
+.terminal-output {
+  padding: 16px;
+  min-height: 180px;
+  max-height: 240px;
+  overflow-y: auto;
+}
+
+.stream-pre {
+  margin: 0;
+  font-size: 0.78rem;
+  line-height: 1.5;
+  color: #c9d1d9;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.cursor-blink {
+  display: inline-block;
+  color: var(--accent);
+  font-weight: 700;
+  animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+  50% { opacity: 0; }
+}
+
+.terminal-idle-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: var(--space-4) 0;
+  gap: var(--space-2);
+}
+
+.idle-prompt {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+}
+
+.idle-prompt strong {
+  color: var(--accent);
+}
+
+.idle-tags {
+  display: flex;
+  gap: var(--space-3);
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+/* Tab 2: IoT Telemetry Grid */
+.iot-grid-dashboard {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-3);
+}
+
+.iot-metric-box {
+  background: rgba(22, 22, 22, 0.75);
+  border: 1px solid var(--border);
+  border-radius: var(--border-radius-md);
+  padding: var(--space-3);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.iot-box-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+}
+
+.iot-big-number {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  line-height: 1.1;
+}
+
+.iot-big-number .unit {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+.iot-bar-track {
+  width: 100%;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 2px;
+  overflow: hidden;
+  margin-top: 4px;
+}
+
+.iot-bar-fill {
+  height: 100%;
+  background: var(--accent);
+  border-radius: 2px;
+  transition: width 400ms ease;
+}
+
+.box-highlight {
+  border-color: rgba(183, 255, 0, 0.4);
+  background: rgba(183, 255, 0, 0.04);
+}
+
+.iot-classification {
+  font-size: 0.72rem;
+  color: var(--text-secondary);
+}
+
+.iot-classification strong {
+  color: var(--accent);
+}
+
+.iot-bottom-note {
+  font-size: 0.74rem;
+  color: var(--text-muted);
+  margin-top: var(--space-3);
+  text-align: center;
+}
+
+/* Tab 3: System Pipeline */
+.pipeline-steps-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+}
+
+.pipe-step {
+  flex: 1;
+  background: rgba(20, 20, 20, 0.75);
+  border: 1px solid var(--border);
+  border-radius: var(--border-radius-md);
+  padding: var(--space-3);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.pipe-num {
+  font-size: 0.72rem;
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.pipe-title {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.pipe-desc {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  line-height: 1.35;
+}
+
+.pipe-connector {
+  color: var(--accent);
+  font-size: 1.2rem;
+  font-weight: 700;
+  opacity: 0.6;
+}
+
+@media (max-width: 900px) {
+  .iot-grid-dashboard {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .pipeline-steps-row {
+    flex-direction: column;
+  }
+
+  .pipe-connector {
+    transform: rotate(90deg);
+  }
+}

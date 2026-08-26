@@ -1,6 +1,10 @@
+/* ==========================================================================
+   Experience & Achievements Section Styles (High Space Efficiency)
+   ========================================================================== */
+
 .journey-section {
-  padding-top: var(--space-5);
-  padding-bottom: var(--space-5);
+  padding-top: var(--space-4);
+  padding-bottom: var(--space-4);
   opacity: 0;
   transform: translateY(12px);
   transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1), transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
@@ -11,41 +15,70 @@
   transform: translateY(0);
 }
 
+.experience-header-row {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: var(--space-4);
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
+
 .journey-main-heading {
-  font-family: var(--font-heading);
-  font-size: var(--text-h1);
+  font-size: var(--text-h2);
   line-height: var(--lh-heading);
   font-weight: 700;
   color: var(--text-primary);
-  margin-bottom: var(--space-5);
   letter-spacing: -0.02em;
 }
 
-.sub-section-title {
+/* Tab Switcher Pills */
+.exp-tabs-pill-bar {
   display: flex;
   align-items: center;
-  gap: var(--space-2);
-  font-size: var(--text-h3);
-  font-weight: 700;
+  gap: 6px;
+  background: rgba(18, 18, 18, 0.85);
+  border: 1px solid var(--border);
+  padding: 4px;
+  border-radius: var(--border-radius-full);
+  backdrop-filter: blur(10px);
+}
+
+.exp-tab-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  background: transparent;
+  border: none;
+  border-radius: var(--border-radius-full);
+  color: var(--text-secondary);
+  font-size: var(--text-mono-sm);
+  font-family: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 150ms, color 150ms;
+}
+
+.exp-tab-btn:hover {
   color: var(--text-primary);
-  margin-bottom: var(--space-3);
-  padding-bottom: var(--space-2);
-  border-bottom: 1px solid var(--border);
 }
 
-.title-icon {
-  color: var(--accent);
+.exp-tab-btn.active {
+  background: var(--accent);
+  color: #080808;
+  font-weight: 700;
 }
 
-/* Work Experience Cards Grid */
-.experience-work-container {
-  margin-bottom: var(--space-5);
-}
-
+/* Work Cards Grid */
 .work-cards-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: var(--space-4);
+  gap: var(--space-3);
+}
+
+.work-tilt-wrap {
+  height: 100%;
 }
 
 .work-experience-card {
@@ -56,12 +89,12 @@
   display: flex;
   flex-direction: column;
   gap: var(--space-2);
-  transition: border-color var(--transition-medium), transform var(--transition-medium), box-shadow var(--transition-medium);
+  height: 100%;
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
 }
 
 .work-experience-card:hover {
   border-color: var(--border-hover);
-  transform: translateY(-3px);
   box-shadow: var(--glow-lime-subtle);
 }
 
@@ -69,20 +102,15 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  font-size: var(--text-mono-sm);
 }
 
 .work-type-badge {
-  font-size: 11px;
   color: var(--accent);
-  background-color: var(--accent-soft);
-  padding: 3px 10px;
-  border-radius: var(--border-radius-full);
-  border: 1px solid rgba(183, 255, 0, 0.2);
   font-weight: 600;
 }
 
 .work-duration {
-  font-size: var(--text-mono-sm);
   color: var(--text-muted);
   display: flex;
   align-items: center;
@@ -90,10 +118,10 @@
 }
 
 .work-role-title {
-  font-size: 1.25rem;
+  font-size: 1.1rem;
   font-weight: 700;
   color: var(--text-primary);
-  line-height: 1.2;
+  line-height: 1.25;
 }
 
 .work-company-meta {
@@ -101,110 +129,172 @@
   align-items: center;
   gap: var(--space-3);
   font-size: var(--text-mono-sm);
-  color: var(--accent);
-  margin-bottom: 2px;
+  color: var(--text-secondary);
+  flex-wrap: wrap;
 }
 
 .company-name, .company-loc {
-  display: flex;
+  display: inline-flex;
   align-items: center;
   gap: 4px;
 }
 
 .work-summary {
-  font-size: var(--text-body);
+  font-size: var(--text-small);
   color: var(--text-secondary);
-  line-height: var(--lh-body);
+  line-height: 1.45;
 }
 
 .work-bullets-list {
+  list-style: none;
   display: flex;
   flex-direction: column;
   gap: 4px;
-  margin: var(--space-1) 0;
-  list-style: none;
-  font-size: var(--text-small);
-  color: var(--text-secondary);
+  font-size: 0.8125rem;
+  color: var(--text-muted);
 }
 
 .work-tech-chips {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--space-2);
+  gap: 6px;
   margin-top: auto;
   padding-top: var(--space-2);
 }
 
-/* Timeline Journey Section */
-.journey-timeline-container {
-  position: relative;
-}
-
-.journey-timeline-list {
-  display: flex;
-  flex-direction: column;
+/* Hackathons Grid */
+.hackathons-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
   gap: var(--space-3);
-  list-style: none;
 }
 
-.journey-item-card {
-  background-color: var(--surface);
+.hackathon-card {
+  background: rgba(14, 14, 14, 0.85);
   border: 1px solid var(--border);
   border-radius: var(--border-radius-lg);
   padding: var(--space-4);
   display: flex;
   flex-direction: column;
   gap: var(--space-2);
-  transition: border-color var(--transition-medium), transform var(--transition-medium);
+  height: 100%;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.4);
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
 }
 
-.journey-item-card:hover {
+.hackathon-card:hover {
   border-color: var(--border-hover);
-  transform: translateX(4px);
+  box-shadow: var(--glow-lime-subtle);
+}
+
+.hack-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.hack-award-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(183, 255, 0, 0.1);
+  border: 1px solid rgba(183, 255, 0, 0.3);
+  padding: 3px 10px;
+  border-radius: var(--border-radius-full);
+  color: var(--accent);
+  font-size: 0.72rem;
+  font-weight: 700;
+}
+
+.hack-year {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.hack-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1.25;
+}
+
+.hack-organizer {
+  font-size: 0.75rem;
+  color: var(--accent);
+}
+
+.hack-desc {
+  font-size: var(--text-small);
+  color: var(--text-secondary);
+  line-height: 1.45;
+  flex: 1;
+}
+
+.hack-tags-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: var(--space-2);
+  padding-top: var(--space-2);
+  border-top: 1px solid var(--border-dark);
+}
+
+/* Compact Journey Grid */
+.journey-grid-compact {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-3);
+}
+
+.journey-compact-card {
+  background: rgba(16, 16, 16, 0.8);
+  border: 1px solid var(--border);
+  border-radius: var(--border-radius-md);
+  padding: var(--space-3);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
 }
 
 .journey-card-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  font-size: 0.72rem;
 }
 
 .journey-period {
-  font-size: var(--text-mono-sm);
   color: var(--accent);
-  font-weight: 700;
-  letter-spacing: 0.08em;
 }
 
 .journey-tag-chip {
-  font-size: 11px;
-  color: var(--text-secondary);
-  background-color: rgba(255, 255, 255, 0.04);
-  padding: 3px 10px;
-  border-radius: var(--border-radius-full);
-  border: 1px solid var(--border);
+  color: var(--text-muted);
 }
 
 .journey-item-title {
-  font-size: 1.125rem;
+  font-size: 0.95rem;
   font-weight: 700;
   color: var(--text-primary);
 }
 
 .journey-item-summary {
-  font-size: var(--text-small);
+  font-size: 0.8rem;
   color: var(--text-secondary);
-  line-height: var(--lh-body);
+  line-height: 1.4;
 }
 
 .journey-tech-chips {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--space-2);
+  gap: 4px;
+  margin-top: 4px;
 }
 
 @media (max-width: 1023px) {
-  .work-cards-grid {
+  .work-cards-grid,
+  .hackathons-grid,
+  .journey-grid-compact {
     grid-template-columns: 1fr;
   }
 }

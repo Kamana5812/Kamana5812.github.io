@@ -1,0 +1,407 @@
+/* ==========================================================================
+   High-Precision 3D Horizontal Education & Academic Timeline
+   ========================================================================== */
+
+.etl-container {
+  margin-top: 56px;
+  padding-top: 32px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  position: relative;
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.etl-container.is-in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── Header Row ── */
+.etl-header-row {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: 24px;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.etl-title-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.etl-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: var(--accent);
+  text-transform: uppercase;
+}
+
+.etl-pill-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 8px var(--accent);
+  animation: etl-dot-ping 2s infinite ease-in-out;
+}
+
+@keyframes etl-dot-ping {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.4); opacity: 0.6; }
+}
+
+.etl-subtitle {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  max-width: 600px;
+  line-height: 1.4;
+}
+
+/* Scroll / Nav Controls */
+.etl-nav-controls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.etl-hint-text {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  margin-right: 6px;
+  letter-spacing: 0.04em;
+}
+
+.etl-nav-btn {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.etl-nav-btn:hover {
+  background: rgba(183, 255, 0, 0.12);
+  border-color: var(--accent);
+  color: var(--accent);
+  transform: translateY(-1px);
+}
+
+/* ── Scrollable Track Stage ── */
+.etl-scroll-stage {
+  overflow-x: auto;
+  overflow-y: visible;
+  padding: 30px 10px 40px 10px;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(183, 255, 0, 0.35) rgba(255, 255, 255, 0.02);
+  border-radius: 12px;
+  background: radial-gradient(ellipse at 50% 50%, rgba(183, 255, 0, 0.02) 0%, transparent 70%);
+}
+
+.etl-scroll-stage::-webkit-scrollbar {
+  height: 5px;
+}
+
+.etl-scroll-stage::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: 999px;
+}
+
+.etl-scroll-stage::-webkit-scrollbar-thumb {
+  background: rgba(183, 255, 0, 0.35);
+  border-radius: 999px;
+}
+
+.etl-scroll-stage::-webkit-scrollbar-thumb:hover {
+  background: var(--accent);
+}
+
+/* ── Track Canvas: Ample 460px height to prevent any clipping ── */
+.etl-track-canvas {
+  position: relative;
+  min-width: 1200px;
+  height: 460px;
+  display: flex;
+  align-items: center;
+}
+
+/* ── Center Laser Rail ── */
+.etl-laser-rail {
+  position: absolute;
+  top: 50%;
+  left: 60px;
+  right: 60px;
+  height: 3px;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 999px;
+  overflow: visible;
+  z-index: 1;
+}
+
+.etl-laser-glow {
+  position: absolute;
+  inset: -3px 0;
+  background: linear-gradient(90deg, transparent, rgba(183, 255, 0, 0.2), rgba(97, 218, 251, 0.2), transparent);
+  border-radius: 999px;
+  filter: blur(2px);
+}
+
+.etl-laser-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #b7ff00 0%, #61dafb 35%, #ff9800 65%, #c084fc 85%, #b7ff00 100%);
+  background-size: 200% 100%;
+  border-radius: 999px;
+  box-shadow: 0 0 14px rgba(183, 255, 0, 0.6);
+  transition: width 1.8s cubic-bezier(0.16, 1, 0.3, 1);
+  animation: etl-rail-anim 4s linear infinite;
+}
+
+@keyframes etl-rail-anim {
+  0% { background-position: 0% 0%; }
+  100% { background-position: 200% 0%; }
+}
+
+/* ── Nodes Row ── */
+.etl-nodes-row {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0 60px;
+  position: relative;
+  z-index: 2;
+}
+
+/* ── Station Anchor ── */
+.etl-station {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 160px;
+  cursor: pointer;
+}
+
+/* Central Dot on Rail */
+.etl-node-anchor {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 22px;
+  height: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 5;
+}
+
+.etl-node-core {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--node-color);
+  box-shadow: 0 0 12px var(--node-color);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.etl-node-ring {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 1.5px solid var(--node-color);
+  opacity: 0.6;
+  transition: transform 0.2s ease;
+}
+
+.etl-node-pulse {
+  position: absolute;
+  inset: -6px;
+  border-radius: 50%;
+  border: 1px solid var(--node-color);
+  opacity: 0;
+  animation: etl-sonar 2.4s ease-out infinite;
+  animation-delay: var(--station-delay, 0ms);
+}
+
+@keyframes etl-sonar {
+  0% { transform: scale(0.8); opacity: 0.8; }
+  100% { transform: scale(2.4); opacity: 0; }
+}
+
+.etl-station:hover .etl-node-core {
+  transform: scale(1.35);
+  box-shadow: 0 0 20px var(--node-color);
+}
+
+.etl-station:hover .etl-node-ring {
+  transform: scale(1.2);
+  opacity: 1;
+}
+
+/* ── Connector Laser Stem ── */
+.etl-laser-stem {
+  position: absolute;
+  width: 2px;
+  z-index: 3;
+  transition: opacity 0.2s ease;
+}
+
+.etl-stem-pos-top {
+  height: 30px;
+  bottom: calc(50% + 11px);
+  background: linear-gradient(to top, var(--node-color), transparent);
+}
+
+.etl-stem-pos-bottom {
+  height: 30px;
+  top: calc(50% + 11px);
+  background: linear-gradient(to bottom, var(--node-color), transparent);
+}
+
+/* ── Card Bubble (Strictly Scoped Column Layout) ── */
+.etl-card-bubble {
+  position: absolute;
+  width: 220px;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-start !important;
+  text-align: left !important;
+  box-sizing: border-box !important;
+  background: rgba(12, 14, 18, 0.95);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 14px 16px;
+  backdrop-filter: blur(16px);
+  box-shadow: 0 10px 32px rgba(0, 0, 0, 0.65), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease, border-color 0.25s ease;
+  z-index: 4;
+}
+
+.etl-card-pos-top {
+  bottom: calc(50% + 40px);
+}
+
+.etl-card-pos-bottom {
+  top: calc(50% + 40px);
+}
+
+.etl-station:hover .etl-card-bubble,
+.etl-station.is-active .etl-card-bubble {
+  border-color: var(--node-color);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.85), 0 0 22px -4px var(--node-color);
+}
+
+.etl-station:hover .etl-card-pos-top,
+.etl-station.is-active .etl-card-pos-top {
+  transform: translateY(-6px);
+}
+
+.etl-station:hover .etl-card-pos-bottom,
+.etl-station.is-active .etl-card-pos-bottom {
+  transform: translateY(6px);
+}
+
+/* Future Milestone */
+.etl-station.is-future .etl-card-bubble {
+  border-style: dashed;
+  opacity: 0.85;
+}
+
+/* ── Card Content ── */
+.etl-card-topbar {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  width: 100% !important;
+  margin-bottom: 8px;
+}
+
+.etl-icon-badge {
+  width: 26px;
+  height: 26px;
+  border-radius: 6px;
+  border: 1px solid;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.etl-date-badge {
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  padding: 2px 8px;
+  border-radius: 999px;
+  border: 1px solid;
+  background: rgba(0, 0, 0, 0.5);
+  white-space: nowrap;
+}
+
+.etl-card-heading {
+  font-size: 0.88rem !important;
+  font-weight: 700 !important;
+  color: var(--text-primary) !important;
+  line-height: 1.25 !important;
+  margin: 0 0 4px 0 !important;
+  width: 100% !important;
+}
+
+.etl-card-org {
+  font-size: 0.72rem !important;
+  color: var(--text-secondary) !important;
+  line-height: 1.35 !important;
+  margin: 0 0 4px 0 !important;
+  width: 100% !important;
+}
+
+.etl-card-detail {
+  font-size: 0.64rem !important;
+  color: var(--text-muted) !important;
+  line-height: 1.3 !important;
+  margin: 0 0 8px 0 !important;
+  width: 100% !important;
+}
+
+/* ── Skill Tags ── */
+.etl-tags-row {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 4px !important;
+  width: 100% !important;
+}
+
+.etl-tag-chip {
+  font-size: 0.58rem;
+  color: #d1d5db;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 2px 6px;
+  border-radius: 4px;
+  white-space: nowrap;
+}
+
+/* ── Responsive ── */
+@media (max-width: 900px) {
+  .etl-header-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+}

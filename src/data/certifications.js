@@ -1,47 +1,23 @@
 export const certificationsList = [
   {
-    id: "cert-raspi-python",
-    name: "The Raspberry Pi Platform and Python Programming for the Raspberry Pi",
-    organization: "Coursera / UC Irvine",
-    issuer: "University of California, Irvine",
-    year: 2025,
-    verificationUrl: "https://coursera.org/verify/example-raspi",
-    skillsCovered: ["Raspberry Pi", "Python Programming", "Linux Environment", "IoT Integration"]
-  },
-  {
-    id: "cert-interfacing-raspi",
-    name: "Interfacing with the Raspberry Pi",
-    organization: "Coursera / UC Irvine",
-    issuer: "University of California, Irvine",
-    year: 2025,
-    verificationUrl: "https://coursera.org/verify/example-interface",
-    skillsCovered: ["General Purpose I/O", "Sensor Interfacing", "Python Hardware Scripts"]
+    id: "cert-ibm-skillsbuild-genai-cloud",
+    name: "IBM SkillsBuild Gen AI & Cloud Computing Internship",
+    organization: "BharatCares · IBM SkillsBuild & AICTE",
+    issuer: "AICTE & IBM SkillsBuild",
+    year: 2026,
+    credentialId: "BHIBMAC10046",
+    documentUrl: "/certificates/ibm-skillsbuild-genai-cloud-internship.pdf",
+    verificationUrl: "https://www.linkedin.com/in/kamana-agrawal-510146281/overlay/Certifications/843226216/treasury/?profileId=ACoAAESKy1wBcRk5c8Cm4EN_aGcJ_Ja6ddNpxG4",
+    skillsCovered: ["Generative AI", "Cloud Computing", "Prompt Engineering", "AWS EC2", "FastAPI"]
   },
   {
     id: "cert-intro-iot",
-    name: "An Introduction to Programming the Internet of Things (IOT)",
+    name: "An Introduction to Programming the Internet of Things (IOT) Specialization",
     organization: "Coursera / UC Irvine",
     issuer: "University of California, Irvine",
     year: 2025,
-    verificationUrl: "https://coursera.org/verify/example-iot-intro",
-    skillsCovered: ["IoT Architecture", "Embedded Systems", "Hardware/Software Boundaries"]
+    documentUrl: "/certificates/iot-specialization-coursera.pdf",
+    verificationUrl: "https://coursera.org/verify/specialization/CVOIUK51TF4T",
+    skillsCovered: ["IoT Architecture", "Embedded Systems", "Raspberry Pi", "Arduino C", "Microcontroller Telemetry", "Sensors"]
   },
-  {
-    id: "cert-iot-project",
-    name: "Programming for the Internet of Things Project",
-    organization: "Coursera / UC Irvine",
-    issuer: "University of California, Irvine",
-    year: 2025,
-    verificationUrl: "https://coursera.org/verify/example-iot-project",
-    skillsCovered: ["Capstone IoT Build", "Sensor Networks", "Microcontroller Telemetry"]
-  },
-  {
-    id: "cert-arduino-c",
-    name: "The Arduino Platform and C Programming",
-    organization: "Coursera / UC Irvine",
-    issuer: "University of California, Irvine",
-    year: 2025,
-    verificationUrl: "https://coursera.org/verify/example-arduino",
-    skillsCovered: ["Arduino Microcontroller", "C Programming", "Serial Telemetry", "Circuits"]
-  }
 ];

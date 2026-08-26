@@ -1,5 +1,5 @@
 import React from 'react';
-import { Layout, Server, Database, Brain, Wrench, PenTool } from 'lucide-react';
+import { Layout, Server, Database, Brain, Wrench, PenTool, Terminal } from 'lucide-react';
 import { skillCategories } from '../../data/skills';
 import { useInView } from '../../hooks/useInView';
 import './Skills.css';
@@ -7,6 +7,7 @@ import './Skills.css';
 const ICON_MAP = {
   Layout: Layout,
   Server: Server,
+  Terminal: Terminal,
   Database: Database,
   Brain: Brain,
   Wrench: Wrench,

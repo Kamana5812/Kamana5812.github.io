@@ -562,6 +562,17 @@ export function AdminDashboard({ onClose }) {
                     </div>
 
                     <div className="form-group full-width">
+                      <label className="form-label font-mono">DOCUMENT / PDF / IMAGE URL</label>
+                      <input
+                        type="text"
+                        value={cert.documentUrl || ''}
+                        onChange={(e) => handleCertChange(idx, 'documentUrl', e.target.value)}
+                        className="form-input"
+                        placeholder="e.g. /certificates/coursera.pdf or image link"
+                      />
+                    </div>
+
+                    <div className="form-group full-width">
                       <label className="form-label font-mono">SKILLS COVERED (COMMA SEPARATED)</label>
                       <input
                         type="text"

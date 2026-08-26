@@ -3,28 +3,35 @@ import profileImg from '../assets/profile.jpg';
 export const personalInfo = {
   name: "Kamana Agrawal",
   brandLogo: "Kamana.",
-  eyebrow: "FULL-STACK DEVELOPER · ASPIRING SOFTWARE ENGINEER",
-  primaryTitle: "Full-Stack Developer",
-  secondaryTitle: "Aspiring Software Engineer & AI Learner",
+  eyebrow: "FULL-STACK DEVELOPER · ASPIRING AI/ML ENGINEER",
+  primaryTitle: "Full-Stack Developer & Aspiring AI/ML Engineer",
+  secondaryTitle: "Full-Stack Intern @ SuuSri AI · Frontend @ Dipvision Infotech",
   educationStatus: "B.Tech CSE Student at College of Engineering Bhubaneswar",
+  
+  motto: "CODE · CREATE · INNOVATE",
+  brandMotto: "CODE • CREATE • INNOVATE",
+  missionTagline: "Building AI, Web & IoT Solutions for a Smarter Tomorrow",
+  valueProposition: "Turning Ideas into Intelligent Solutions.",
   
   heroHeadlineLead: "I build digital experiences that",
   heroHeadlineAccent: "think, scale & matter.",
   
-  supportingLine: "I'm Kamana Agrawal, a B.Tech Computer Science Engineering student focused on building clean, responsive web applications, exploring IoT systems, and progressing toward AI and software engineering.",
-  secondaryLine: "I love bringing ideas to life on the web—from designing pixel-perfect user interfaces in React to writing C/JavaScript logic, microcontroller firmware, and backend APIs.",
+  supportingLine: "AI/ML Enthusiast & Full-Stack Developer. Building AI, Web & IoT Solutions for a Smarter Tomorrow.",
+  secondaryLine: "Turning ideas into intelligent solutions—from responsive full-stack applications in React and FastAPI to on-device IoT telemetry and Generative AI workflows.",
 
-  aboutLead: "Developer by practice. Software Engineer in the making.",
-  aboutBody1: "Hey there! I’m Kamana Agrawal, a B.Tech CSE student at College of Engineering Bhubaneswar with a solid passion for building clean, user-friendly digital experiences.",
-  aboutBody2: "I'm on a clear growth track toward becoming a Software Engineer — sharpening my fundamentals in C programming, JavaScript, and front-end development while exploring how great technology is engineered behind the scenes.",
-  aboutBody3: "I believe in consistent learning, clean code, and doing the basics right — every single time. My goal is simple: build real-world projects, strengthen problem-solving skills, and grow into a full-fledged engineer who ships meaningful products.",
-  aboutBody4: "Currently building web applications, exploring IoT hardware telemetry with Raspberry Pi and Arduino, and expanding into Artificial Intelligence.",
+  aboutLead: "Developer by practice. AI/ML Engineer in the making.",
+  aboutBody1: "I started my journey in Computer Science with a simple curiosity — how ideas can be transformed into real, usable interfaces. From HTML, CSS, and JavaScript, I moved into modern frontend development with React, REST APIs, Git/GitHub, and backend architectures.",
+  aboutBody2: "Today, I'm working as a Full-Stack Developer Intern at SuuSri AI and as a Frontend Developer at Dipvision Infotech, gaining hands-on experience with real-world development, collaboration, and software engineering workflows.",
+  aboutBody3: "Web development is only one part of my journey. I'm deeply passionate about AI & Machine Learning (LLMs, Prompt Engineering, and Cloud Systems) — especially in how intelligent systems solve practical problems rather than simply exist as demos.",
+  aboutBody4: "This drive has led me to explore projects combining Full-Stack Web, AI, and IoT — including solar-energy predictive maintenance, AI career roadmaps, and peer-reviewed research in sensor networks.",
   
-  // Academic Background from Resume PDF
+  // Academic Background
   college: "College of Engineering Bhubaneswar",
-  university: "College of Engineering Bhubaneswar — BTech CSE",
+  collegeShort: "CEB, Bhubaneswar",
+  university: "Biju Patnaik University of Technology (BPUT), Rourkela",
+  universityShort: "BPUT, Rourkela",
   degree: "B.Tech — Computer Science & Engineering",
-  yearOfStudy: "3rd Year",
+  yearOfStudy: "2nd Year (Batch of 2028)",
   duration: "September 2024 – August 2028",
   graduationYear: "2028",
   location: "Bhubaneswar, Odisha, India",
@@ -35,31 +42,36 @@ export const personalInfo = {
   phone: "+91 8093859132",
   github: "https://github.com/Kamana5812",
   linkedin: "https://www.linkedin.com/in/kamana-agrawal-510146281",
-  resumeUrl: "./Kamana_Agrawal_Resume.html",
+  resumeUrl: "#resume",
   profileImage: profileImg,
   
   socials: [
     { label: "GitHub", url: "https://github.com/Kamana5812", icon: "Github" },
     { label: "LinkedIn", url: "https://www.linkedin.com/in/kamana-agrawal-510146281", icon: "Linkedin" },
     { label: "Email", url: "mailto:kamanaagrawal833@gmail.com", icon: "Mail" },
-    { label: "Resume", url: "./Kamana_Agrawal_Resume.html", icon: "FileText" }
+    { label: "Resume", url: "#resume", icon: "FileText" }
   ],
 
   // Stat / Capability Cards for About Section
   stats: [
     {
-      num: "02+",
-      label: "Internships Completed",
+      num: "04",
+      label: "Internships Completed & Active",
       icon: "Briefcase"
     },
     {
-      title: "Full Stack",
-      label: "Development",
-      icon: "Code2"
+      num: "01",
+      label: "Published Research Paper",
+      icon: "BookOpen"
     },
     {
-      title: "IoT & AI",
-      label: "Hardware & Software",
+      title: "AI & Full-Stack",
+      label: "LLMs, React & Cloud",
+      icon: "Brain"
+    },
+    {
+      title: "IoT & Embedded",
+      label: "Sensors & Telemetry",
       icon: "Cpu"
     }
   ]

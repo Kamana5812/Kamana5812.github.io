@@ -24,7 +24,7 @@ export const featuredProjects = [
     contribution: "Designed end-to-end architecture: FastAPI backend, SSE client parser, pytest test suite, multi-stage Docker build, and AWS EC2 deployment.",
     learnings: "Mastered LLM structured prompt contracts, SSE streaming protocols, swappable provider abstraction layers, and containerized cloud deployment.",
     github: "https://github.com/Kamana5812/skopos",
-    liveDemo: "https://skopos-career.vercel.app"
+    liveDemo: "http://16.171.69.34:8000/"
   },
   {
     id: "optivolt-ai",
