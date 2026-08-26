@@ -1,0 +1,65 @@
+site_url: https://kamana-agrawal.me
+display_url: https://kamana-agrawal.me
+
+backend:
+  name: github
+  repo: Kamana5812/Kamana5812.github.io
+  branch: main
+  base_url: https://decap-cms-oauth.vercel.app
+
+media_folder: "public/uploads"
+public_folder: "/uploads"
+
+collections:
+  - name: "personal"
+    label: "Personal Bio & Details"
+    files:
+      - file: "src/data/personal.json"
+        label: "Personal Information"
+        name: "personal_info"
+        fields:
+          - { label: "Name", name: "name", widget: "string" }
+          - { label: "Primary Title", name: "primaryTitle", widget: "string" }
+          - { label: "Secondary Title", name: "secondaryTitle", widget: "string" }
+          - { label: "Education Status", name: "educationStatus", widget: "string" }
+          - { label: "Email", name: "email", widget: "string" }
+          - { label: "Supporting Line", name: "supportingLine", widget: "text" }
+          - { label: "About Lead", name: "aboutLead", widget: "string" }
+          - { label: "About Paragraph", name: "aboutBody1", widget: "text" }
+
+  - name: "projects"
+    label: "Featured Projects"
+    folder: "src/content/projects"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Tagline", name: "tagline", widget: "string" }
+      - { label: "Description", name: "description", widget: "text" }
+      - { label: "Category", name: "category", widget: "string" }
+      - { label: "Role", name: "role", widget: "string" }
+      - { label: "Status", name: "status", widget: "string" }
+      - { label: "GitHub URL", name: "github", widget: "string", required: false }
+      - { label: "Live Demo URL", name: "liveDemo", widget: "string", required: false }
+
+  - name: "certifications"
+    label: "Certifications"
+    folder: "src/content/certifications"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Name", name: "name", widget: "string" }
+      - { label: "Organization", name: "organization", widget: "string" }
+      - { label: "Year", name: "year", widget: "number", value_type: "int" }
+      - { label: "Verification URL", name: "verificationUrl", widget: "string", required: false }
+
+  - name: "experience"
+    label: "Work Experience"
+    folder: "src/content/experience"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Role Title", name: "title", widget: "string" }
+      - { label: "Company / Organization", name: "organization", widget: "string" }
+      - { label: "Duration", name: "duration", widget: "string" }
+      - { label: "Summary", name: "summary", widget: "text" }

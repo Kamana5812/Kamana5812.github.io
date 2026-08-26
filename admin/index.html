@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Content Manager | Kamana Agrawal Portfolio</title>
+    
+    <!-- Robust Polyfill for crypto.randomUUID -->
+    <script>
+      (function() {
+        function generateUUID() {
+          return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+            var r = Math.random() * 16 | 0, v = c === 'x' ? r : (r & 0x3 | 0x8);
+            return v.toString(16);
+          });
+        }
+
+        if (typeof window !== 'undefined') {
+          if (!window.crypto) {
+            window.crypto = {};
+          }
+          if (!window.crypto.randomUUID) {
+            try {
+              Object.defineProperty(window.crypto, 'randomUUID', {
+                value: generateUUID,
+                configurable: true,
+                writable: true
+              });
+            } catch (e) {
+              window.crypto.randomUUID = generateUUID;
+            }
+          }
+        }
+        if (typeof self !== 'undefined' && self !== window) {
+          if (!self.crypto) self.crypto = {};
+          if (!self.crypto.randomUUID) self.crypto.randomUUID = generateUUID;
+        }
+      })();
+    </script>
+
+    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  </head>
+  <body>
+    <!-- Include Decap CMS script -->
+    <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+  </body>
+</html>
