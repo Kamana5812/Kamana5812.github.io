@@ -220,7 +220,6 @@ export function ResumePage() {
                   {cert.credentialId && <span className="rp-cred"> · ID: {cert.credentialId}</span>}
                 </li>
               ))}
-              <li><strong>Competitive Programming:</strong> Solved 150+ DSA problems on LeetCode &amp; HackerRank; 5-Star Gold Badge in C on HackerRank.</li>
             </ul>
           </div>
         </div>

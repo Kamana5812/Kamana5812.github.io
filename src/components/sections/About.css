@@ -30,22 +30,20 @@
 }
 
 .about-study-card {
-  background: rgba(14, 14, 14, 0.85);
-  border: 1px solid var(--border);
+  background-color: var(--surface);
+  border: none;
   border-radius: var(--border-radius-lg);
   padding: 20px 16px;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 16px;
-  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.5);
-  backdrop-filter: blur(12px);
-  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+  box-shadow: var(--clay-shadow-outer), var(--clay-shadow-inner);
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast), background-color var(--transition-fast);
 }
 
 .about-study-card:hover {
-  border-color: var(--border-hover);
-  box-shadow: var(--glow-lime-subtle);
+  transform: translateY(-4px);
 }
 
 .study-avatar-container {
@@ -268,21 +266,20 @@
 }
 
 .metric-card {
-  background: rgba(14, 14, 14, 0.8);
-  border: 1px solid var(--border);
+  background-color: var(--surface);
+  border: none;
   border-radius: var(--border-radius-md);
   padding: var(--space-4) var(--space-3);
   display: flex;
   flex-direction: column;
   gap: 6px;
   height: 100%;
-  backdrop-filter: blur(10px);
-  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+  box-shadow: var(--clay-shadow-outer), var(--clay-shadow-inner);
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast), background-color var(--transition-fast);
 }
 
 .metric-card:hover {
-  border-color: var(--border-hover);
-  box-shadow: var(--glow-lime-subtle);
+  transform: translateY(-2px);
 }
 
 .metric-icon-box {

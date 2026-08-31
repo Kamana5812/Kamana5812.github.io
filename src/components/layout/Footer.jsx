@@ -17,13 +17,6 @@ export function Footer({ onOpenAdmin }) {
 
         <div className="footer-center">
           <span>Designed &amp; Built by {personalInfo.brandLogo}</span>
-          <a
-            href="./admin/"
-            className="admin-footer-link"
-            style={{ marginLeft: '12px', color: 'var(--text-muted)', textDecoration: 'none', fontSize: '0.75rem' }}
-          >
-            • Decap CMS (/admin)
-          </a>
         </div>
 
         <div className="footer-right">

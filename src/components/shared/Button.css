@@ -9,39 +9,55 @@
   font-weight: 600;
   text-decoration: none;
   border-radius: var(--border-radius-sm);
-  transition: background-color var(--transition-fast), border-color var(--transition-fast), color var(--transition-fast);
+  transition: all var(--transition-fast);
   white-space: nowrap;
 }
 
 /* Primary Accent Button */
 .btn--primary {
-  background-color: var(--color-primary);
-  color: #FFFFFF;
-  border: 1px solid var(--color-primary);
+  background-color: var(--accent);
+  color: #080808;
+  border: none;
+  box-shadow: var(--clay-shadow-btn);
 }
 
 .btn--primary:hover:not(:disabled) {
-  background-color: var(--color-accent-hover);
-  border-color: var(--color-accent-hover);
+  background-color: var(--accent-hover);
+  transform: translateY(-2px);
+  box-shadow: var(--clay-shadow-outer), var(--clay-shadow-inner);
+}
+
+.btn--primary:active:not(:disabled) {
+  transform: translateY(1px);
+  box-shadow: var(--clay-shadow-btn-active);
 }
 
 /* Secondary Outline Button */
 .btn--secondary {
-  background-color: transparent;
-  color: var(--color-text);
-  border: 1px solid var(--color-border-dark);
+  background-color: var(--surface);
+  color: var(--text-primary);
+  border: none;
+  box-shadow: var(--clay-shadow-btn);
 }
 
 .btn--secondary:hover:not(:disabled) {
-  border-color: var(--color-accent);
-  color: var(--color-accent);
+  background-color: var(--surface-hover);
+  color: var(--accent);
+  transform: translateY(-2px);
+  box-shadow: var(--clay-shadow-outer), var(--clay-shadow-inner);
+}
+
+.btn--secondary:active:not(:disabled) {
+  transform: translateY(1px);
+  box-shadow: var(--clay-shadow-btn-active);
 }
 
 /* Nav Resume Pill Button */
 .btn--pill {
-  background-color: transparent;
-  color: var(--color-primary);
-  border: 1px solid var(--color-primary);
+  background-color: var(--surface);
+  color: var(--text-primary);
+  border: none;
+  box-shadow: var(--clay-shadow-btn);
   border-radius: var(--border-radius-full);
   padding: 8px 18px;
   font-family: var(--font-mono);
@@ -50,8 +66,15 @@
 }
 
 .btn--pill:hover:not(:disabled) {
-  background-color: var(--color-primary);
-  color: #FFFFFF;
+  background-color: var(--accent);
+  color: #080808;
+  transform: translateY(-2px);
+  box-shadow: var(--clay-shadow-outer), var(--clay-shadow-inner);
+}
+
+.btn--pill:active:not(:disabled) {
+  transform: translateY(1px);
+  box-shadow: var(--clay-shadow-btn-active);
 }
 
 /* Minimal Text Link Button */
@@ -74,9 +97,9 @@
 .btn:disabled {
   opacity: 0.5;
   cursor: not-allowed;
-  background-color: var(--color-surface-alt);
-  border-color: var(--color-border);
-  color: var(--color-text-muted);
+  background-color: var(--bg-secondary);
+  box-shadow: none;
+  color: var(--text-muted);
 }
 
 .btn-external-icon {

@@ -12,6 +12,7 @@ import { GitHubStats } from './components/sections/GitHubStats';
 import { Experience } from './components/sections/Experience';
 import { Publications } from './components/sections/Publications';
 import { Hackathons } from './components/sections/Hackathons';
+import { AcademicTimeline } from './components/sections/AcademicTimeline';
 import { CertificationList } from './components/sections/CertificationList';
 import { Endorsements } from './components/sections/Endorsements';
 import { PhilosophyStatement } from './components/sections/PhilosophyStatement';
@@ -22,6 +23,7 @@ import { AdminDashboard } from './pages/AdminDashboard';
 import { ResumePage } from './components/sections/ResumePage';
 import { useActiveSection } from './hooks/useActiveSection';
 import { useSoundFX } from './hooks/useSoundFX';
+import { useTheme } from './hooks/useTheme';
 import { ThreeBackground } from './components/3d/ThreeBackground';
 import { CommandPalette } from './components/shared/CommandPalette';
 
@@ -31,6 +33,7 @@ export default function App() {
   const [isCommandPaletteOpen, setIsCommandPaletteOpen] = useState(false);
   
   const soundFX = useSoundFX();
+  const { theme, toggleTheme } = useTheme();
   const activeSection = useActiveSection([
     'home',
     'what-i-do',
@@ -122,6 +125,8 @@ export default function App() {
         onOpenCommandPalette={() => setIsCommandPaletteOpen(true)}
         soundEnabled={soundFX.soundEnabled}
         onToggleSound={soundFX.toggleSound}
+        theme={theme}
+        onToggleTheme={toggleTheme}
       />
 
       <div className="page-wrapper">
@@ -161,6 +166,10 @@ export default function App() {
 
               {/* JOURNEY & EXPERIENCE (Includes Internships, Hackathons & Journey Tabs) */}
               <Experience />
+              <hr className="section-divider" />
+
+              {/* ACADEMIC TIMELINE */}
+              <AcademicTimeline />
               <hr className="section-divider" />
 
               {/* RESEARCH & VERIFIED CREDENTIALS (2-Column Research + Certifications) */}

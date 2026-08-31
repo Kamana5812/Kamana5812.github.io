@@ -75,10 +75,11 @@
 /* Contact Form Container */
 .contact-form-frame {
   background-color: var(--surface);
-  border: 1px solid var(--border);
+  border: none;
   border-radius: var(--border-radius-lg);
   padding: var(--space-4);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+  box-shadow: var(--clay-shadow-outer), var(--clay-shadow-inner);
+  transition: background-color var(--transition-fast), box-shadow var(--transition-fast);
 }
 
 .form-frame-top {
@@ -125,18 +126,19 @@
 .form-textarea {
   width: 100%;
   padding: 10px 12px;
-  background-color: var(--bg);
-  border: 1px solid var(--border);
+  background-color: var(--surface);
+  border: none;
   border-radius: var(--border-radius-sm);
   color: var(--text-primary);
   font-size: var(--text-body);
-  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+  box-shadow: var(--clay-shadow-inner);
+  transition: box-shadow var(--transition-fast), background-color var(--transition-fast);
 }
 
 .form-input:focus,
 .form-textarea:focus {
-  border-color: var(--accent);
-  box-shadow: 0 0 0 2px rgba(183, 255, 0, 0.15);
+  outline: none;
+  box-shadow: var(--clay-shadow-inner), 0 0 0 2px var(--accent-soft);
 }
 
 .form-input.has-error,
@@ -158,19 +160,26 @@
   justify-content: center;
   gap: var(--space-2);
   padding: 12px 24px;
-  background-color: var(--surface-hover);
+  background-color: var(--surface);
   color: var(--text-primary);
-  border: 1px solid var(--border);
+  border: none;
   border-radius: var(--border-radius-full);
   font-weight: 600;
   font-size: var(--text-small);
   cursor: pointer;
-  transition: border-color var(--transition-fast), color var(--transition-fast);
+  box-shadow: var(--clay-shadow-btn);
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast), color var(--transition-fast);
 }
 
 .btn-form-submit:hover:not(:disabled) {
-  border-color: var(--accent);
+  transform: translateY(-2px);
   color: var(--accent);
+  box-shadow: var(--clay-shadow-outer), var(--clay-shadow-inner);
+}
+
+.btn-form-submit:active:not(:disabled) {
+  transform: translateY(1px);
+  box-shadow: var(--clay-shadow-btn-active);
 }
 
 .form-success-box {

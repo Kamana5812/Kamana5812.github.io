@@ -6,7 +6,7 @@ export const featuredProjects = [
     number: "01",
     tagline: "Full-stack AI web application streaming personalized career and learning roadmaps in real time.",
     description: "Skopos is a full-stack AI web application that turns a short intake form into a personalized, AI-generated career and learning roadmap — streamed live, section by section, into a structured interface with phased timelines, skill-gap analysis, and curated resources. Built end-to-end with a FastAPI backend, Groq-powered LLM integration behind a swappable client architecture, Server-Sent Events for real-time streaming, and a fully containerized deployment on AWS EC2. Includes a 25-test automated suite and a custom-branded frontend built without any JS framework.",
-    year: 2025,
+    year: 2026,
     category: "Full-Stack AI Web App",
     role: "Full-Stack & AI Engineer",
     status: "Deployed on AWS EC2",

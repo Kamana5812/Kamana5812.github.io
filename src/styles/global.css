@@ -30,10 +30,11 @@
   position: relative;
   background-color: var(--bg);
   background-image: 
-    radial-gradient(circle at 80% 20%, rgba(183, 255, 0, 0.03) 0%, transparent 40%),
-    linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+    radial-gradient(circle at 80% 20%, var(--accent-soft) 0%, transparent 40%),
+    linear-gradient(to right, var(--border-dark) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--border-dark) 1px, transparent 1px);
   background-size: 100% 100%, 64px 64px, 64px 64px;
+  transition: background-color var(--transition-medium), color var(--transition-medium);
 }
 
 .page-wrapper {
@@ -174,4 +175,42 @@
   .page-wrapper {
     padding: 0 var(--space-3);
   }
+}
+
+/* ==========================================================================
+   Claymorphism Utility Classes
+   ========================================================================== */
+
+.clay-card {
+  background-color: var(--surface);
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--clay-shadow-outer), var(--clay-shadow-inner);
+  border: none;
+  transition: background-color var(--transition-medium), box-shadow var(--transition-medium), transform var(--transition-medium);
+}
+
+.clay-btn {
+  background-color: var(--surface);
+  border-radius: var(--border-radius-full);
+  box-shadow: var(--clay-shadow-btn);
+  border: none;
+  color: var(--text-primary);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.clay-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--clay-shadow-outer), var(--clay-shadow-inner);
+}
+
+.clay-btn:active {
+  transform: translateY(1px);
+  box-shadow: var(--clay-shadow-btn-active);
+}
+
+/* Global Transition for Theme Switching */
+*, *::before, *::after {
+  transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
 }

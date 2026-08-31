@@ -98,19 +98,18 @@
 }
 
 .meta-badge-card {
-  background: rgba(17, 17, 17, 0.7);
-  border: 1px solid var(--border);
+  background-color: var(--surface);
+  border: none;
   border-radius: var(--border-radius-md);
   padding: 10px 12px;
   display: flex;
   align-items: flex-start;
   gap: 10px;
-  backdrop-filter: blur(10px);
-  transition: border-color var(--transition-fast), transform var(--transition-fast);
+  box-shadow: var(--clay-shadow-outer), var(--clay-shadow-inner);
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast), background-color var(--transition-fast);
 }
 
 .meta-badge-card:hover {
-  border-color: var(--border-hover);
   transform: translateY(-2px);
 }
 
@@ -248,19 +247,18 @@
   width: 100%;
   height: 100%;
   border-radius: var(--border-radius-lg);
-  border: 1.5px solid var(--border-hover);
+  border: none;
   background-color: var(--surface);
   overflow: hidden;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), var(--glow-lime);
+  box-shadow: var(--clay-shadow-outer), var(--clay-shadow-inner);
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: transform var(--transition-medium), border-color var(--transition-medium);
+  transition: transform var(--transition-medium), box-shadow var(--transition-medium), background-color var(--transition-medium);
 }
 
 .hero-photo-frame:hover .photo-ring-glow {
   transform: translateY(-4px);
-  border-color: var(--accent);
 }
 
 .hero-profile-img {
@@ -320,17 +318,16 @@
   right: -10px;
   width: 310px;
   background-color: var(--surface);
-  border: 1px solid var(--border);
+  border: none;
   border-radius: var(--border-radius-lg);
   padding: var(--space-4);
-  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.6), var(--glow-lime-subtle);
-  transition: transform var(--transition-medium), border-color var(--transition-medium);
+  box-shadow: var(--clay-shadow-outer), var(--clay-shadow-inner);
+  transition: transform var(--transition-medium), box-shadow var(--transition-medium), background-color var(--transition-medium);
   z-index: 10;
 }
 
 .floating-building-card:hover {
   transform: translateY(-3px);
-  border-color: var(--border-hover);
 }
 
 .card-top {

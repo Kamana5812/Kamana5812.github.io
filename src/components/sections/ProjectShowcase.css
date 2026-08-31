@@ -1,17 +1,16 @@
 .dark-project-card {
   background-color: var(--surface);
-  border: 1px solid var(--border);
+  border: none;
   border-radius: var(--border-radius-lg);
+  box-shadow: var(--clay-shadow-outer), var(--clay-shadow-inner);
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  transition: transform var(--transition-medium), border-color var(--transition-medium), box-shadow var(--transition-medium);
+  transition: transform var(--transition-medium), box-shadow var(--transition-medium), background-color var(--transition-medium);
 }
 
 .dark-project-card:hover {
   transform: translateY(-4px);
-  border-color: var(--border-hover);
-  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.5), var(--glow-lime-subtle);
 }
 
 .card-media-wrapper {

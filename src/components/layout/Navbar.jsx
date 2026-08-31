@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, Search, Volume2, VolumeX } from 'lucide-react';
+import { Menu, X, Search, Volume2, VolumeX, Sun, Moon } from 'lucide-react';
 import { MobileNavigation } from './MobileNavigation';
 import { personalInfo } from '../../data/personal';
 import './Navbar.css';
 
-export function Navbar({ activeSection = 'home', onOpenCommandPalette, soundEnabled = true, onToggleSound }) {
+export function Navbar({ activeSection = 'home', onOpenCommandPalette, soundEnabled = true, onToggleSound, theme, onToggleTheme }) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
 
@@ -109,6 +109,19 @@ export function Navbar({ activeSection = 'home', onOpenCommandPalette, soundEnab
               <span className="search-text">Search</span>
               <kbd className="cmd-kbd">⌘K</kbd>
             </button>
+
+            {/* Theme Toggle */}
+            {onToggleTheme && (
+              <button
+                type="button"
+                className="navbar-theme-btn"
+                onClick={onToggleTheme}
+                title={theme === 'light' ? "Switch to Dark Mode" : "Switch to Light Mode"}
+                aria-label={theme === 'light' ? "Switch to Dark Mode" : "Switch to Light Mode"}
+              >
+                {theme === 'light' ? <Moon size={16} /> : <Sun size={16} />}
+              </button>
+            )}
 
             {/* Sound FX Toggle */}
             {onToggleSound && (
